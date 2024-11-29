@@ -98,6 +98,8 @@ export const Blog = defineDocumentType(() => ({
   fields: {
     title: { type: 'string', required: true },
     date: { type: 'date', required: true },
+    start: { type: 'date'},
+    finish: { type: 'date'},
     tags: { type: 'list', of: { type: 'string' }, default: [] },
     lastmod: { type: 'date' },
     draft: { type: 'boolean' },
@@ -108,6 +110,7 @@ export const Blog = defineDocumentType(() => ({
     bibliography: { type: 'string' },
     canonicalUrl: { type: 'string' },
     dtype: { type: 'string' },
+    cities: { type: 'list', of: { type: 'string' }, default: [] },
   },
   computedFields: {
     ...computedFields,

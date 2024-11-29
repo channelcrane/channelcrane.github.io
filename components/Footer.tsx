@@ -4,7 +4,7 @@ import SocialIcon from '@/components/social-icons'
 import Image from 'next/image'
 export default function Footer() {
   return (
-    <footer className="fixed bottom-0 left-0 w-screen bg-white text-black text-center py-4 tracking-tight font-bold hover:shadow-up pt-0 max-h-[80px] hover:max-h-[500px] hover:h-auto transition-all duration-700 delay-700 ease-in-out">
+    <footer className="fixed bottom-0 left-0 w-screen bg-white text-black text-center py-4 tracking-tight font-bold hover:shadow-up pt-0 max-h-[80px] hover:max-h-[500px] hover:h-auto transition-all duration-700 delay-0 hover:delay-700 ease-in-out">
       <div className="text-center h-[80px] pt-0">
         <Image className="inline-block" src={"static/images/logo_symbol.svg"} width={63.2} height={44.18} alt="Symbol of Crane"></Image>
       </div>

@@ -4,10 +4,10 @@ interface Props {
   text: string
 }
 
-const Tag = ({ text }: Props) => {
+const CityTag = ({ text }: Props) => {
   return (
     <Link
-      href={`/tags/${slug(text)}`}
+      href={`/city/${slug(text)}`}
       className="mr-4 font-bold hover:underline"
     >
       {text.split(' ').join('-')}
@@ -15,4 +15,4 @@ const Tag = ({ text }: Props) => {
   )
 }
 
-export default Tag
+export default CityTag
