@@ -117,17 +117,17 @@ export default function ArchiveListLayout({
             <div className="p-2">
               <label className="flex items-center">
                 <input type="checkbox" name="year" value="2020" className="peer invisible w-0" defaultChecked/>
-                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-4 border-black rounded-full scale-35"></span>
+                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-5 border-black rounded-full scale-35"></span>
                 2020
               </label>
               <label className="flex items-center">
                 <input type="checkbox" name="year" value="2021" className="peer invisible w-0" defaultChecked/>
-                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-4 border-black rounded-full scale-35"></span>
+                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-5 border-black rounded-full scale-35"></span>
                 2021
               </label>
               <label className="flex items-center">
                 <input type="checkbox" name="year" value="2022" className="peer invisible w-0" defaultChecked/>
-                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-4 border-black rounded-full scale-35"></span>
+                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-5 border-black rounded-full scale-35"></span>
                 2022
               </label>
             </div>
@@ -147,17 +147,17 @@ export default function ArchiveListLayout({
             <div className="p-2">
               <label className="flex items-center">
                 <input type="checkbox" name="year" value="2020" className="peer invisible w-0" defaultChecked/>
-                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-4 border-black rounded-full scale-35"></span>
+                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-5 border-black rounded-full scale-35"></span>
                 2020
               </label>
               <label className="flex items-center">
                 <input type="checkbox" name="year" value="2021" className="peer invisible w-0" defaultChecked/>
-                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-4 border-black rounded-full scale-35"></span>
+                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-5 border-black rounded-full scale-35"></span>
                 2021
               </label>
               <label className="flex items-center">
                 <input type="checkbox" name="year" value="2022" className="peer invisible w-0" defaultChecked/>
-                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-4 border-black rounded-full scale-35"></span>
+                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-5 border-black rounded-full scale-35"></span>
                 2022
               </label>
             </div>
@@ -177,17 +177,17 @@ export default function ArchiveListLayout({
             <div className="p-2">
               <label className="flex items-center">
                 <input type="checkbox" name="year-2020" value="2020" className="peer invisible w-0" defaultChecked/>
-                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-4 border-black rounded-full scale-35"></span>
+                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-5 border-black rounded-full scale-35"></span>
                 2020
               </label>
               <label className="flex items-center">
                 <input type="checkbox" name="year-2021" value="2021" className="peer invisible w-0" defaultChecked/>
-                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-4 border-black rounded-full scale-35"></span>
+                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-5 border-black rounded-full scale-35"></span>
                 2021
               </label>
               <label className="flex items-center">
                 <input type="checkbox" name="year-2022" value="2022" className="peer invisible w-0" defaultChecked/>
-                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-4 border-black rounded-full scale-35"></span>
+                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-5 border-black rounded-full scale-35"></span>
                 2022
               </label>
             </div>

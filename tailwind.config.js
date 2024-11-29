@@ -20,6 +20,7 @@ module.exports = {
       },
       borderWidth: {
         '0.5': '0.75px',
+        '6': '5px'
       },
       boxShadow: {
         'up': '0 -3px 6px rgba(0, 0, 0, 0.16)', // 위쪽 그림자 커스텀 값
