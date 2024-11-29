@@ -5,6 +5,8 @@ import { allBlogs } from 'contentlayer/generated'
 import { genPageMetadata } from 'app/seo'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import ArchiveListLayout from '@/layouts/ArchiveListLayout'
+
 
 export async function generateMetadata(): Promise<Metadata> {
   const type = 'project'
@@ -31,5 +33,5 @@ export default async function ProjectPage() {
     return notFound()
   }
 
-  return <ListLayout posts={filteredPosts} title={title} />
+  return <ArchiveListLayout posts={filteredPosts} title={title} />
 }

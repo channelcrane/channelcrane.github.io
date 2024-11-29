@@ -5,6 +5,7 @@ import { allBlogs } from 'contentlayer/generated'
 import { genPageMetadata } from 'app/seo'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import PeopleListLayout from '@/layouts/PeopleListLayout'
 
 export async function generateMetadata(): Promise<Metadata> {
   const type = 'people'
@@ -31,5 +32,5 @@ export default async function PeoplePage() {
     return notFound()
   }
 
-  return <ListLayout posts={filteredPosts} title={title} />
+  return <PeopleListLayout posts={filteredPosts} title={title} />
 }

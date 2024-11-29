@@ -15,8 +15,15 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      scale: {
+        '35': '.35'
+      },
+      borderWidth: {
+        '0.5': '0.75px',
+      },
       boxShadow: {
         'up': '0 -3px 6px rgba(0, 0, 0, 0.16)', // 위쪽 그림자 커스텀 값
+        'around': '0 0 6px rgba(0, 0, 0, 0.16)',
       },
       lineHeight: {
         11: '2.75rem',
