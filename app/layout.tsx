@@ -12,6 +12,15 @@ import siteMetadata from '@/data/siteMetadata'
 import { ThemeProviders } from './theme-providers'
 import { Metadata } from 'next'
 
+import localFont from "next/font/local";
+const pretendard = localFont({
+  src: "../public/static/fonts/PretendardVariable.woff2",
+  display: "swap",
+  weight: "45 920",
+  variable: "--font-pretendard",
+});
+
+
 const space_grotesk = Space_Grotesk({
   subsets: ['latin'],
   display: 'swap',
@@ -64,7 +73,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang={siteMetadata.language}
-      className={`${space_grotesk.variable} scroll-smooth`}
+      className={`${space_grotesk.variable} scroll-smooth ${pretendard.variable}`}
       suppressHydrationWarning
     >
       <link
@@ -94,7 +103,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <meta name="theme-color" media="(prefers-color-scheme: light)" content="#fff" />
       <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#000" />
       <link rel="alternate" type="application/rss+xml" href={`${basePath}/feed.xml`} />
-      <body className="bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white">
+      <body className={`${"bg-white pl-[calc(100vw-100%)] text-black antialiased dark:bg-gray-950 dark:text-white"} ${pretendard.className}`}>
         <ThemeProviders>
           <Analytics analyticsConfig={siteMetadata.analytics as AnalyticsConfig} />
           <SectionContainer>

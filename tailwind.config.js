@@ -15,6 +15,9 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      boxShadow: {
+        'up': '0 -3px 6px rgba(0, 0, 0, 0.16)', // 위쪽 그림자 커스텀 값
+      },
       lineHeight: {
         11: '2.75rem',
         12: '3rem',
@@ -22,7 +25,7 @@ module.exports = {
         14: '3.5rem',
       },
       fontFamily: {
-        sans: ['var(--font-space-grotesk)', ...fontFamily.sans],
+        pretendard: ['var(--font-pretendard)', ...fontFamily.sans],
       },
       colors: {
         primary: colors.pink,
