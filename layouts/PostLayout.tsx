@@ -10,6 +10,10 @@ import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 // import Image from 'next/image'
+import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
+import { allBlogs } from 'contentlayer/generated'
+import { notFound } from 'next/navigation'
+import PeopleProjectListLayout from '@/layouts/ProjectListLayout'
 
 const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`
 const discussUrl = (path) =>
@@ -30,9 +34,55 @@ interface LayoutProps {
   children: ReactNode
 }
 
+function ProjectPage() {
+  const type = 'project'
+  const title = type[0].toUpperCase() + type.slice(1) // "Project"로 설정
+  const filteredPosts = allCoreContent(
+    sortPosts(allBlogs.filter((post) => post.dtype === type)) // type이 "project"인 게시글만 필터링
+  )
+
+  if (filteredPosts.length === 0) {
+    return notFound()
+  }
+
+  return <PeopleProjectListLayout posts={filteredPosts} title={title} />
+}
+
+function PeopleLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
+  const { filePath, dtype, path, slug, date, title, tags, credit, imagePaths } = content
+  const basePath = path.split('/')[0]
+
+  return (
+    <SectionContainer>
+      <ScrollTopAndComment />
+      <article>
+        <div className='h-52 w-full'></div>
+        <div className="flex flex-col lg:flex-row">
+          <div className='lg:w-1/2 overflow-scroll no-scrollbar font-bold px-12'>
+            {title}<br/>
+            {tags}
+          </div>
+          <div className='lg:w-1/4 overflow-scroll no-scrollbar font-bold pl-12'>
+            {children}
+          </div>
+          <div className='lg:w-1/4 overflow-scroll no-scrollbar font-bold text-right px-4'>
+            site
+          </div>
+        </div>
+
+        <ProjectPage></ProjectPage>
+      </article>
+    </SectionContainer>
+  )
+}
+
+
 export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
   const { filePath, dtype, path, slug, date, title, tags, credit, imagePaths } = content
   const basePath = path.split('/')[0]
+
+    if (dtype==='people')
+      return PeopleLayout({ content, authorDetails, next, prev, children})
 
   return (
     <SectionContainer>

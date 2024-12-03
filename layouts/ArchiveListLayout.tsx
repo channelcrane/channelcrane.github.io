@@ -117,17 +117,17 @@ export default function ArchiveListLayout({
             <div className="p-2">
               <label className="flex items-center">
                 <input type="checkbox" name="year" value="2020" className="peer invisible w-0" defaultChecked/>
-                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-5 border-black rounded-full scale-35"></span>
+                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-4 border-black rounded-full scale-35"></span>
                 2020
               </label>
               <label className="flex items-center">
                 <input type="checkbox" name="year" value="2021" className="peer invisible w-0" defaultChecked/>
-                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-5 border-black rounded-full scale-35"></span>
+                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-4 border-black rounded-full scale-35"></span>
                 2021
               </label>
               <label className="flex items-center">
                 <input type="checkbox" name="year" value="2022" className="peer invisible w-0" defaultChecked/>
-                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-5 border-black rounded-full scale-35"></span>
+                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-4 border-black rounded-full scale-35"></span>
                 2022
               </label>
             </div>
@@ -147,17 +147,17 @@ export default function ArchiveListLayout({
             <div className="p-2">
               <label className="flex items-center">
                 <input type="checkbox" name="year" value="2020" className="peer invisible w-0" defaultChecked/>
-                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-5 border-black rounded-full scale-35"></span>
+                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-4 border-black rounded-full scale-35"></span>
                 2020
               </label>
               <label className="flex items-center">
                 <input type="checkbox" name="year" value="2021" className="peer invisible w-0" defaultChecked/>
-                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-5 border-black rounded-full scale-35"></span>
+                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-4 border-black rounded-full scale-35"></span>
                 2021
               </label>
               <label className="flex items-center">
                 <input type="checkbox" name="year" value="2022" className="peer invisible w-0" defaultChecked/>
-                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-5 border-black rounded-full scale-35"></span>
+                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-4 border-black rounded-full scale-35"></span>
                 2022
               </label>
             </div>
@@ -177,17 +177,17 @@ export default function ArchiveListLayout({
             <div className="p-2">
               <label className="flex items-center">
                 <input type="checkbox" name="year-2020" value="2020" className="peer invisible w-0" defaultChecked/>
-                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-5 border-black rounded-full scale-35"></span>
+                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-4 border-black rounded-full scale-35"></span>
                 2020
               </label>
               <label className="flex items-center">
                 <input type="checkbox" name="year-2021" value="2021" className="peer invisible w-0" defaultChecked/>
-                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-5 border-black rounded-full scale-35"></span>
+                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-4 border-black rounded-full scale-35"></span>
                 2021
               </label>
               <label className="flex items-center">
                 <input type="checkbox" name="year-2022" value="2022" className="peer invisible w-0" defaultChecked/>
-                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-5 border-black rounded-full scale-35"></span>
+                <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-4 border-black rounded-full scale-35"></span>
                 2022
               </label>
             </div>
@@ -233,7 +233,7 @@ export default function ArchiveListLayout({
           </div> */}
           <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-28 gap-y-4 justify-content-between">
               {displayPosts.map((post) => {
-                const { path, date, title, summary, tags, start, finish, cities } = post
+                const { path, date, title, dtype, summary, tags, start, finish, cities } = post
                 return (
                   <div key={path} className=" aspect-[1/1] border-0.5 border-black px-3 py-2">
                     <div className="font-bold tracking-tight">
@@ -241,10 +241,11 @@ export default function ArchiveListLayout({
                           {title}
                         </Link>
                       </div>
-                      <div className='font-bold'>
-                        {formatDateRange(date, date)}
-                      </div>
-                      <div className="flex flex-wrap lg:pt-4">
+                      {(dtype == 'project') &&
+                        <div className='font-bold'>
+                          {formatDateRange(start, finish)}
+                        </div>}
+                      <div className="flex flex-wrap">
                         {tags?.map((tag) => <Tag key={tag} text={tag} />)}
                       </div>
                       <div className="flex flex-wrap">
