@@ -111,6 +111,9 @@ export const Blog = defineDocumentType(() => ({
     canonicalUrl: { type: 'string' },
     dtype: { type: 'string' },
     cities: { type: 'list', of: { type: 'string' }, default: [] },
+    people: { type: 'list', of: { type: 'string' }, default: [] },
+    imagePaths: { type: 'list', of: { type: 'string' }, default: [] },
+    credit: { type: 'json', default:{}}
   },
   computedFields: {
     ...computedFields,

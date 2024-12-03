@@ -9,6 +9,7 @@ import Image from '@/components/Image'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
+// import Image from 'next/image'
 
 const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`
 const discussUrl = (path) =>
@@ -30,52 +31,60 @@ interface LayoutProps {
 }
 
 export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
-  const { filePath, path, slug, date, title, tags } = content
+  const { filePath, dtype, path, slug, date, title, tags, credit, imagePaths } = content
   const basePath = path.split('/')[0]
 
   return (
     <SectionContainer>
       <ScrollTopAndComment />
       <article>
-        <div className="xl:divide-y xl:divide-gray-200 xl:dark:divide-gray-700">
-
-          <div className="grid-rows-[auto_1fr] divide-y divide-gray-200 pb-8 dark:divide-gray-700 xl:grid xl:grid-cols-4 xl:gap-x-6 xl:divide-y-0">
-
-            <div className="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
-              <div className="prose max-w-none pb-8 pt-10 dark:prose-invert">{children}</div>
-              <div className="pb-6 pt-6 text-sm text-gray-700 dark:text-gray-300">
-                <Link href={discussUrl(path)} rel="nofollow">
-                  Discuss on Twitter
-                </Link>
-                {` • `}
-                <Link href={editUrl(filePath)}>View on GitHub</Link>
-              </div>  
-              {siteMetadata.comments && (
-                <div
-                  className="pb-6 pt-6 text-center text-gray-700 dark:text-gray-300"
-                  id="comment"
-                >
-                  <Comments slug={slug} />
-                </div>
-              )}
-            </div>
-            <footer>
-              <div className="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2 xl:divide-y">
-                {tags && (
-                  <div className="py-4 xl:py-8">
-                    <h2 className="text-xs uppercase tracking-wide text-gray-500 dark:text-gray-400">
-                      Tags
-                    </h2>
-                    <div className="flex flex-wrap">
-                      {tags.map((tag) => (
-                        <Tag key={tag} text={tag} />
-                      ))}
+        <div className='h-52 w-full'></div>
+        <div className="flex flex-col lg:flex-row">
+              <div className='lg:h-body lg:w-1/2 overflow-scroll no-scrollbar'>
+                {imagePaths.map((src, index) => (
+                    <div key={index} className="relative w-full h-auto">
+                      <Image
+                        src={src}
+                        alt={`Image ${index + 1}`}
+                        width={100}
+                        height={100}
+                        style={{
+                          objectFit: 'contain',
+                          width: '100%',
+                          height: 'auto',
+                          padding: '0rem 1rem',
+                          paddingBottom: '1rem'
+                        }}
+                      />
                     </div>
-                  </div>
-                )}
+                  ))}
               </div>
-            </footer>
-          </div>
+              <div className="lg:h-body overflow-scroll prose max-w-none p-4 text-black lg:w-1/4  font-bold pt-0 no-scrollbar">{children}</div>
+              <div className='pt-8 lg:pt-0 lg:h-body overflow-scroll lg:w-1/4 font-bold no-scrollbar'>
+                <div className='p-4 pt-0'>
+                  {title}
+                </div>
+                <div className='p-4'>
+                  Crane position<br/>
+                  Producer / Project Manager / Tech Coordinator / Coordinator
+                </div>
+                <div className='p-4'>
+                  Credits<br/>
+                  Artist LEE YONA / Art Director KIM SUNJEONG / Exhibition Manager CHO HEEYEON / Exhibition Assistant YOO SEUNGAH
+                </div>
+                <div className='p-4'>
+                  Link<br/>
+                  Https://www.instagram.com
+                </div>
+                <div className='p-4'>
+                  Tag<br/>
+                  Installation
+                </div>
+                {/* <div>
+                  {credit}
+                </div> */}
+              </div>
+              
         </div>
       </article>
     </SectionContainer>

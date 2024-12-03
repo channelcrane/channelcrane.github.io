@@ -1,72 +1,16 @@
 ---
 title: Lecture Performance
 date: '2016-03-08'
+start: '2024-03-27'
+finish: '2024-12-13'
 dtype: 'project'
-tags: ['markdown', 'code', 'features']
+tags: ['Performance']
+cities: ['Seoul', 'Berlin', 'Online']
+cranepositions: ['producer', 'coordinator']
+participants: ['Crane', '전우상']
+images: ['static/images/aisthesis-savage/1.webp','static/images/aisthesis-savage/2.webp']
 draft: false
 summary: Example of a markdown file with code blocks and syntax highlighting
 ---
 
-# Introduction
-
-The tailwind starter blog has out of the box support for [Next.js's built-in image component](https://nextjs.org/docs/api-reference/next/image) and automatically swaps out default image tags in markdown or mdx documents to use the Image component provided.
-
-# Usage
-
-To use in a new page route / javascript file, simply import the image component and call it e.g.
-
-```js
-import Image from 'next/image'
-
-function Home() {
-  return (
-    <>
-      <h1>My Homepage</h1>
-      <Image src="/me.png" alt="Picture of the author" width={500} height={500} />
-      <p>Welcome to my homepage!</p>
-    </>
-  )
-}
-
-export default Home
-```
-
-For a markdown file, the default image tag can be used and the default `img` tag gets replaced by the `Image` component in the build process.
-
-Assuming we have a file called `ocean.jpg` in `static/images/ocean.jpg`, the following line of code would generate the optimized image.
-
-```
-![ocean](/static/images/ocean.jpg)
-```
-
-Alternatively, since we are using mdx, we can just use the image component directly! Note, that you would have to provide a fixed width and height. The `img` tag method parses the dimension automatically.
-
-```js
-<Image alt="ocean" src="/static/images/ocean.jpg" width={256} height={128} />
-```
-
-_Note_: If you try to save the image, it is in webp format, if your browser supports it!
-
-![ocean](/static/images/ocean.jpeg)
-
-Photo by [YUCAR FotoGrafik](https://unsplash.com/@yucar?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-on [Unsplash](https://unsplash.com/s/photos/sea?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-# Benefits
-
-- Smaller image size with Webp (~30% smaller than jpeg)
-- Responsive images - the correct image size is served based on the user's viewport
-- Lazy loading - images load as they are scrolled to the viewport
-- Avoids [Cumulative Layout Shift](https://web.dev/cls/)
-- Optimization on demand instead of build-time - no increase in build time!
-
-# Limitations
-
-- Due to the reliance on `next/image`, unless you are using an external image CDN like Cloudinary or Imgix, it is practically required to use Vercel for hosting. This is because the component acts like a serverless function that calls a highly optimized image CDN.
-
-  If you do not want to be tied to Vercel, you can remove `imgToJsx` in `remarkPlugins` in `lib/mdx.js`. This would avoid substituting the default `img` tag.
-
-  Alternatively, one could wait for image optimization at build time to be supported. A different library, [next-optimized-images](https://github.com/cyrilwanner/next-optimized-images) does that, although it requires transforming the images through webpack which is not done here.
-
-- Images from external links are not passed through `next/image`
-- All images have to be stored in the `public` folder e.g `/static/images/ocean.jpeg`
+이번 렉쳐 퍼포먼스에서는 장거리 협업 과정에서 겪는 실험적 접근의 어려움을 다룹니다. 협력적인 창작 환경에서 발생하는 갈등과 불일치를 인지하고, 이를 해결하기 위한 섬세한 소통과 이해의 중요성을 강조합니다. 특히, 이번 협업을 통해 안무 다이렉팅에서 권위적인 폐습이 어떻게 다른 형태로 나타났으며, 안무가가 이를 어떻게 극복하려 했는지에 대해 이야기하고자 합니다. 

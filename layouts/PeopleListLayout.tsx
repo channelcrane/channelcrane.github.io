@@ -80,7 +80,7 @@ export default function PeopleListLayout({
       <div className='pb-32'>
         <div className="w-full pb-6 pt-6 h-52 ">
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 px-10">
               {displayPosts.map((post) => {
                 const { path, date, title, summary, tags } = post
                 return (

@@ -29,7 +29,7 @@ const Header = () => {
     <header className={headerClass}>
       <div className="flex justify-center p-4">
       <Link href={'/'}>
-      <Image src="static/images/logo_ver_2.svg" width={119.62} height={73.71}alt='Crane logo'></Image>
+      <Image src="/static/images/identity/logo_ver_2.svg" width={119.62} height={73.71}alt='Crane logo'></Image>
       </Link>
       </div>
 

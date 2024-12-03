@@ -15,6 +15,10 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      spacing: {
+        // 필요한 높이 값을 추가하세요
+        'body': 'calc(100vh - 13rem - 80px)',
+      },
       scale: {
         '35': '.35'
       },

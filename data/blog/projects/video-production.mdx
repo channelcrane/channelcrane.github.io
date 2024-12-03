@@ -1,72 +1,31 @@
 ---
 title: Video Production
 date: '2016-03-08'
+start: '2024-05-05'
+finish: '2024-12-13'
+venue: ['C-lab, Art Korea Lab']
 dtype: 'project'
-tags: ['markdown', 'code', 'features']
+tags: ['Installation', 'Performance']
+cities: ['Seoul', 'Online']
+cranepositions: ['Project Manager', 'Tech Coordinator']
+sponsor/support: ['문화체육관광부', '예술경영지원센터', '아트코리아랩']
+participants: ['Crane', '류우']
 draft: false
 summary: Example of a markdown file with code blocks and syntax highlighting
 ---
 
-# Introduction
+**크레인 브랜드 필름은 2가지 버젼으로 제작되었다.**
 
-The tailwind starter blog has out of the box support for [Next.js's built-in image component](https://nextjs.org/docs/api-reference/next/image) and automatically swaps out default image tags in markdown or mdx documents to use the Image component provided.
+**첫번째 주제는 신화 ‘헤파이스토스’다.**
 
-# Usage
+헤파이스토스는 어린 시절 어머니 헤라에게 버림받아 지상으로 추락하게 되었을 때 절름발이가 되었다. 그런 그를 에우리노메(티탄족)가 해저의 동굴에서 9년 동안 보살펴주었다. 그 이후, 헤파이스토스는 어떤 기술적 기적도 만들어낼 수 있는 발명가로 여겨졌다. 그리고 다른 신들과 다르게 자력으로 크게 성장한 노력형 신이 되었다.
 
-To use in a new page route / javascript file, simply import the image component and call it e.g.
+그 어디에도 속할 수 없었던 헤파이스토스(작가)가 에우리노메(크레인)를 만나 자기 자신을 실현할 수 있는 세계속으로 함께 향해간다.
 
-```js
-import Image from 'next/image'
+입장을 바꿔서 생각해보았다. 크레인이 타게팅하는 작가가 나라면 어떤 스토리를 보고 끌려하고 좋아할까. 그러다 나의 과거를 떠올렸는데, 예전에 나는 어떤 사람들 눈에 어딘가 독특하고 이상하기도 한, 특이한 사람이였던 것 같다. 내가 어떤 사람인지, 자신을 파악해서 비슷한 사람들이 있는 무리로 찾아가기 전까지는 그 어디에도 절대 속할 수 없었던 것 같다.
 
-function Home() {
-  return (
-    <>
-      <h1>My Homepage</h1>
-      <Image src="/me.png" alt="Picture of the author" width={500} height={500} />
-      <p>Welcome to my homepage!</p>
-    </>
-  )
-}
+예술가들이라면 응당 살면서 그런경험들이 한번쯤은 있지 않았을까? 그런 의미에서 작가들을 헤파이스토스로 의인화 해보았다. 작가는 크레인과 함께 자기실현을 할 수 있는, 멋지게 비상할 수 있는, 어떤 새로운 세계속으로 함께 모험을 떠난다는 은유를 내포하며 비디오를 만들었다.
 
-export default Home
-```
+**두번째 주제 ‘Positive Energy, Synergy’**
 
-For a markdown file, the default image tag can be used and the default `img` tag gets replaced by the `Image` component in the build process.
-
-Assuming we have a file called `ocean.jpg` in `static/images/ocean.jpg`, the following line of code would generate the optimized image.
-
-```
-![ocean](/static/images/ocean.jpg)
-```
-
-Alternatively, since we are using mdx, we can just use the image component directly! Note, that you would have to provide a fixed width and height. The `img` tag method parses the dimension automatically.
-
-```js
-<Image alt="ocean" src="/static/images/ocean.jpg" width={256} height={128} />
-```
-
-_Note_: If you try to save the image, it is in webp format, if your browser supports it!
-
-![ocean](/static/images/ocean.jpeg)
-
-Photo by [YUCAR FotoGrafik](https://unsplash.com/@yucar?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-on [Unsplash](https://unsplash.com/s/photos/sea?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText)
-
-# Benefits
-
-- Smaller image size with Webp (~30% smaller than jpeg)
-- Responsive images - the correct image size is served based on the user's viewport
-- Lazy loading - images load as they are scrolled to the viewport
-- Avoids [Cumulative Layout Shift](https://web.dev/cls/)
-- Optimization on demand instead of build-time - no increase in build time!
-
-# Limitations
-
-- Due to the reliance on `next/image`, unless you are using an external image CDN like Cloudinary or Imgix, it is practically required to use Vercel for hosting. This is because the component acts like a serverless function that calls a highly optimized image CDN.
-
-  If you do not want to be tied to Vercel, you can remove `imgToJsx` in `remarkPlugins` in `lib/mdx.js`. This would avoid substituting the default `img` tag.
-
-  Alternatively, one could wait for image optimization at build time to be supported. A different library, [next-optimized-images](https://github.com/cyrilwanner/next-optimized-images) does that, although it requires transforming the images through webpack which is not done here.
-
-- Images from external links are not passed through `next/image`
-- All images have to be stored in the `public` folder e.g `/static/images/ocean.jpeg`
+두번째 주제를 통해서 크레인의 앞으로의 힘찬 에너지와 크레인과 함께하게 될 사람들과의 시너지를 표현하고 싶었다.

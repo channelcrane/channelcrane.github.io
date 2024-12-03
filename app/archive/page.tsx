@@ -22,11 +22,11 @@ export async function generateMetadata(): Promise<Metadata> {
   })
 }
 
-export default async function ProjectPage() {
+export default async function ArchivePage() {
   const type = 'project'
-  const title = type[0].toUpperCase() + type.slice(1) // "Project"로 설정
+  const title = type[0].toUpperCase() + type.slice(1)
   const filteredPosts = allCoreContent(
-    sortPosts(allBlogs.filter((post) => post.dtype === type)) // type이 "project"인 게시글만 필터링
+    sortPosts(allBlogs.filter((post) => true))
   )
 
   if (filteredPosts.length === 0) {

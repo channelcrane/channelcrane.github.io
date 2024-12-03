@@ -100,16 +100,20 @@ export default function ProjectListLayout({
         <div className="flex sm:space-x-24 px-12">
             <ul className='w-full'>
               {displayPosts.map((post) => {
-                const { path, date, title, summary, tags, cities, start, finish } = post
+                const { path, date, title, dtype, summary, tags, cities, start, finish, imagePaths } = post
+                
+                if (dtype != 'project') return null
+
                 return (
                   <li key={path} className="w-full lg:h-60 flex flex-col lg:flex-row lg:space-y-0 pb-20">
                       <div className="relative h-52 lg:w-1/2 lg:h-52 bg-red-200 px-12 py-4">
+                        <Link href={`/${path}`}>
                         <Image
-                          src="/static/images/google.png"
+                          src={imagePaths[0] ||  '/static/images/sparrowhawk-avatar.jpg'}
                           alt="Example Image"
                           layout="fill" // 부모를 채우는 레이아웃
                           objectFit="cover" // 이미지를 채우는 방식 (cover, contain 등)
-                        />
+                        /></Link>
                       </div>
                       <div className="lg:w-1/4 lg:px-12">
                           <div className="font-bold tracking-tight">
