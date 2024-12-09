@@ -11,7 +11,7 @@ import { usePathname } from 'next/navigation'
 
 const Header = () => {
   const pathName = usePathname()
-  let headerClass = 'w-full fixed top-0 left-0 transition-all z-80'
+  let headerClass = 'w-full fixed top-0 left-0 transition-all z-70'
   if (siteMetadata.stickyNav) {
     headerClass += ' sticky top-0'
   }
