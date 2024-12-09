@@ -77,23 +77,24 @@ export default function PeopleListLayout({
 
   return (
     <>
-      <div className='pb-32'>
-        <div className="w-full pb-6 pt-6 h-52 ">
+      <div className="pb-32">
+        <div className="h-52 w-full pb-6 pt-6 "></div>
+        <div className="grid grid-cols-1 gap-1 px-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {displayPosts.map((post) => {
+            const { path, date, title, summary, tags } = post
+            return (
+              <div key={path} className="py-0">
+                <Link
+                  href={`/${path}`}
+                  className="font-bold text-gray-900 underline dark:text-gray-100"
+                >
+                  <span className="uppercase">{title}</span> /{' '}
+                  <span className="first:uppercase">{tags?.map((tag) => tag)}</span>
+                </Link>
+              </div>
+            )
+          })}
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1 px-10">
-              {displayPosts.map((post) => {
-                const { path, date, title, summary, tags } = post
-                return (
-                  <div key={path} className="py-0">
-                      
-                        <Link href={`/${path}`} className="font-bold text-gray-900 dark:text-gray-100 underline">
-                          <span className='uppercase'>{title}</span> / <span className='first:uppercase'>{tags?.map((tag) => tag)}</span>
-                        </Link>
-                      
-                  </div>
-                )
-              })}
-          </div>
       </div>
     </>
   )

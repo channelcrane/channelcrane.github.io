@@ -14,6 +14,7 @@ import { allCoreContent, sortPosts } from 'pliny/utils/contentlayer'
 import { allBlogs } from 'contentlayer/generated'
 import { notFound } from 'next/navigation'
 import PeopleProjectListLayout from '@/layouts/ProjectListLayout'
+import { useProjectTagStore, useYearTagStore, usePeopleTagStore } from 'app/store'
 
 const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`
 const discussUrl = (path) =>
@@ -56,16 +57,15 @@ function PeopleLayout({ content, authorDetails, next, prev, children }: LayoutPr
     <SectionContainer>
       <ScrollTopAndComment />
       <article>
-        <div className='h-52 w-full'></div>
+        <div className="h-52 w-full"></div>
         <div className="flex flex-col lg:flex-row">
-          <div className='lg:w-1/2 overflow-scroll no-scrollbar font-bold px-12'>
-            {title}<br/>
+          <div className="no-scrollbar overflow-scroll px-12 font-bold lg:w-1/2">
+            {title}
+            <br />
             {tags}
           </div>
-          <div className='lg:w-1/4 overflow-scroll no-scrollbar font-bold pl-12'>
-            {children}
-          </div>
-          <div className='lg:w-1/4 overflow-scroll no-scrollbar font-bold text-right px-4'>
+          <div className="no-scrollbar overflow-scroll pl-12 font-bold lg:w-1/4">{children}</div>
+          <div className="no-scrollbar overflow-scroll px-4 text-right font-bold lg:w-1/4">
             site
           </div>
         </div>
@@ -76,65 +76,68 @@ function PeopleLayout({ content, authorDetails, next, prev, children }: LayoutPr
   )
 }
 
-
 export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
   const { filePath, dtype, path, slug, date, title, tags, credit, imagePaths } = content
   const basePath = path.split('/')[0]
 
-    if (dtype==='people')
-      return PeopleLayout({ content, authorDetails, next, prev, children})
+  const handleLinkClick = () => {}
+  if (dtype === 'people') return PeopleLayout({ content, authorDetails, next, prev, children })
 
   return (
     <SectionContainer>
       <ScrollTopAndComment />
       <article>
-        <div className='h-52 w-full'></div>
+        <div className="h-52 w-full"></div>
         <div className="flex flex-col lg:flex-row">
-              <div className='lg:h-body lg:w-1/2 overflow-scroll no-scrollbar'>
-                {imagePaths.map((src, index) => (
-                    <div key={index} className="relative w-full h-auto">
-                      <Image
-                        src={src}
-                        alt={`Image ${index + 1}`}
-                        width={100}
-                        height={100}
-                        style={{
-                          objectFit: 'contain',
-                          width: '100%',
-                          height: 'auto',
-                          padding: '0rem 1rem',
-                          paddingBottom: '1rem'
-                        }}
-                      />
-                    </div>
-                  ))}
+          <div className="no-scrollbar overflow-scroll lg:h-body lg:w-1/2">
+            {imagePaths.map((src, index) => (
+              <div key={index} className="relative h-auto w-full">
+                <Image
+                  src={src}
+                  alt={`Image ${index + 1}`}
+                  width={100}
+                  height={100}
+                  style={{
+                    objectFit: 'contain',
+                    width: '100%',
+                    height: 'auto',
+                    padding: '0rem 1rem',
+                    paddingBottom: '1rem',
+                  }}
+                />
               </div>
-              <div className="lg:h-body overflow-scroll prose max-w-none p-4 text-black lg:w-1/4  font-bold pt-0 no-scrollbar">{children}</div>
-              <div className='pt-8 lg:pt-0 lg:h-body overflow-scroll lg:w-1/4 font-bold no-scrollbar'>
-                <div className='p-4 pt-0'>
-                  {title}
-                </div>
-                <div className='p-4'>
-                  Crane position<br/>
-                  Producer / Project Manager / Tech Coordinator / Coordinator
-                </div>
-                <div className='p-4'>
-                  Credits<br/>
-                  Artist LEE YONA / Art Director KIM SUNJEONG / Exhibition Manager CHO HEEYEON / Exhibition Assistant YOO SEUNGAH
-                </div>
-                <div className='p-4'>
-                  Link<br/>
-                  Https://www.instagram.com
-                </div>
-                <div className='p-4'>
-                  Tag<br/>
-                  Installation
-                </div>
-                {/* <div>
+            ))}
+          </div>
+          <div className="no-scrollbar prose max-w-none overflow-scroll p-4 pt-0 font-bold  text-black lg:h-body lg:w-1/4">
+            {children}
+          </div>
+          <div className="no-scrollbar overflow-scroll pt-8 font-bold lg:h-body lg:w-1/4 lg:pt-0">
+            <div className="p-4 pt-0">{title}</div>
+            <div className="p-4">
+              Crane position
+              <br />
+              Producer / Project Manager / Tech Coordinator / Coordinator
+            </div>
+            <div className="p-4">
+              Credits
+              <br />
+              Artist LEE YONA / Art Director KIM SUNJEONG / Exhibition Manager CHO HEEYEON /
+              Exhibition Assistant YOO SEUNGAH
+            </div>
+            <div className="p-4">
+              Link
+              <br />
+              Https://www.instagram.com
+            </div>
+            <div className="p-4">
+              Tag
+              <br />
+              Installation
+            </div>
+            {/* <div>
                   {credit}
                 </div> */}
-              </div>
-              
+          </div>
         </div>
       </article>
     </SectionContainer>

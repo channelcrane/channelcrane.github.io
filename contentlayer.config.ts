@@ -81,7 +81,7 @@ function createTagCount(allBlogs) {
 function createYearCount(allBlogs) {
   const tagCount: Record<string, number> = {}
   allBlogs.forEach((file) => {
-    if (file.tags && (!isProduction || file.draft !== true)) {
+    if (file.years && (!isProduction || file.draft !== true)) {
       file.years.forEach((tag) => {
         const formattedTag = slug(tag)
         if (formattedTag in tagCount) {
@@ -92,7 +92,44 @@ function createYearCount(allBlogs) {
       })
     }
   })
-  writeFileSync('./app/years-data.json', JSON.stringify(tagCount))
+  writeFileSync('./app/year-data.json', JSON.stringify(tagCount))
+}
+
+function createProjectCount(allBlogs) {
+  const tagCount: Record<string, number> = {}
+  allBlogs.forEach((file) => {
+    if (file.tags && (!isProduction || file.draft !== true)) {
+      if (file.dtype !== 'project') return;
+      file.tags.forEach((tag) => {
+
+        const formattedTag = slug(tag)
+        if (formattedTag in tagCount) {
+          tagCount[formattedTag] += 1
+        } else {
+          tagCount[formattedTag] = 1
+        }
+      })
+    }
+  })
+  writeFileSync('./app/project-tag-data.json', JSON.stringify(tagCount))
+}
+
+function createPeopleCount(allBlogs) {
+  const tagCount: Record<string, number> = {}
+  allBlogs.forEach((file) => {
+    if (file.tags && (!isProduction || file.draft !== true)) {
+      if (file.dtype !== 'people') return;
+      file.tags.forEach((tag) => {
+        const formattedTag = slug(tag)
+        if (formattedTag in tagCount) {
+          tagCount[formattedTag] += 1
+        } else {
+          tagCount[formattedTag] = 1
+        }
+      })
+    }
+  })
+  writeFileSync('./app/people-tag-data.json', JSON.stringify(tagCount))
 }
 
 function createSearchIndex(allBlogs) {
@@ -117,6 +154,7 @@ export const Blog = defineDocumentType(() => ({
     date: { type: 'date', required: true },
     start: { type: 'date'},
     finish: { type: 'date'},
+    years: { type: 'list', of: { type: 'string' }, default: [] },
     tags: { type: 'list', of: { type: 'string' }, default: [] },
     lastmod: { type: 'date' },
     draft: { type: 'boolean' },
@@ -203,7 +241,9 @@ export default makeSource({
   onSuccess: async (importData) => {
     const { allBlogs } = await importData()
     createTagCount(allBlogs)
-    // createYearCount(allBlogs)
+    createYearCount(allBlogs)
+    createPeopleCount(allBlogs)
+    createProjectCount(allBlogs)
     createSearchIndex(allBlogs)
   },
 })

@@ -6,10 +6,7 @@ interface Props {
 
 const CityTag = ({ text }: Props) => {
   return (
-    <Link
-      href={`/city/${slug(text)}`}
-      className="mr-4 font-bold hover:underline"
-    >
+    <Link href={`/city/${slug(text)}`} className="mr-4 font-bold hover:underline">
       {text.split(' ').join('-')}
     </Link>
   )

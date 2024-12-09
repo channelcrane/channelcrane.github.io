@@ -64,19 +64,19 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
 
 function formatDateRange(startDate, endDate) {
   // Date 객체로 변환
-  const start = new Date(startDate);
-  const end = new Date(endDate);
+  const start = new Date(startDate)
+  const end = new Date(endDate)
 
   // 시작 날짜 형식: "YYYY. MM. DD"
-  const startFormatted = `${start.getFullYear()}. ${String(start.getMonth() + 1).padStart(2, '0')}. ${String(start.getDate()).padStart(2, '0')}`;
+  const startFormatted = `${start.getFullYear()}. ${String(start.getMonth() + 1).padStart(2, '0')}. ${String(start.getDate()).padStart(2, '0')}`
 
   // 끝 날짜 형식: "MM.DD" 또는 "MM.DD.YYYY"
   const endFormatted =
     start.getFullYear() === end.getFullYear()
       ? `${String(end.getMonth() + 1).padStart(2, '0')}.${String(end.getDate()).padStart(2, '0')}`
-      : `${String(end.getMonth() + 1).padStart(2, '0')}.${String(end.getDate()).padStart(2, '0')}.${end.getFullYear()}`;
+      : `${String(end.getMonth() + 1).padStart(2, '0')}.${String(end.getDate()).padStart(2, '0')}.${end.getFullYear()}`
 
-  return `${startFormatted}. - ${endFormatted}.`;
+  return `${startFormatted}. - ${endFormatted}.`
 }
 
 export default function ProjectListLayout({
@@ -94,59 +94,57 @@ export default function ProjectListLayout({
 
   return (
     <>
-      <div className='pb-32'>
-        <div className="w-full pb-6 pt-6 h-52 ">
+      <div className="pb-32">
+        <div className="h-52 w-full pb-6 pt-6 "></div>
+        <div className="flex px-12 sm:space-x-24">
+          <ul className="w-full">
+            {displayPosts.map((post) => {
+              const { path, date, title, dtype, summary, tags, cities, start, finish, imagePaths } =
+                post
+
+              if (dtype != 'project') return null
+
+              return (
+                <li
+                  key={path}
+                  className="flex w-full flex-col pb-20 lg:h-60 lg:flex-row lg:space-y-0"
+                >
+                  <div className="relative h-52 bg-red-200 px-12 py-4 lg:h-52 lg:w-1/2">
+                    <Link href={`/${path}`}>
+                      <Image
+                        src={imagePaths[0] || '/static/images/sparrowhawk-avatar.jpg'}
+                        alt="Example Image"
+                        layout="fill" // 부모를 채우는 레이아웃
+                        objectFit="cover" // 이미지를 채우는 방식 (cover, contain 등)
+                      />
+                    </Link>
+                  </div>
+                  <div className="lg:w-1/4 lg:px-12">
+                    <div className="font-bold tracking-tight">
+                      <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
+                        {title}
+                      </Link>
+                    </div>
+                    <div className="font-bold">{formatDateRange(date, date)}</div>
+                    <div className="flex flex-wrap lg:pt-4">
+                      {tags?.map((tag) => <Tag key={tag} text={tag} />)}
+                    </div>
+                    <div className="flex flex-wrap">
+                      {cities?.map((city) => <Tag key={city} text={city} />)}
+                    </div>
+                  </div>
+                  <div className="max-w-none pt-4 font-bold tracking-tight lg:w-1/4 lg:px-12 lg:pt-0">
+                    {summary}
+                  </div>
+                </li>
+              )
+            })}
+          </ul>
+          {pagination && pagination.totalPages > 1 && (
+            <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
+          )}
         </div>
-        <div className="flex sm:space-x-24 px-12">
-            <ul className='w-full'>
-              {displayPosts.map((post) => {
-                const { path, date, title, dtype, summary, tags, cities, start, finish, imagePaths } = post
-                
-                if (dtype != 'project') return null
-
-                return (
-                  <li key={path} className="w-full lg:h-60 flex flex-col lg:flex-row lg:space-y-0 pb-20">
-                      <div className="relative h-52 lg:w-1/2 lg:h-52 bg-red-200 px-12 py-4">
-                        <Link href={`/${path}`}>
-                        <Image
-                          src={imagePaths[0] ||  '/static/images/sparrowhawk-avatar.jpg'}
-                          alt="Example Image"
-                          layout="fill" // 부모를 채우는 레이아웃
-                          objectFit="cover" // 이미지를 채우는 방식 (cover, contain 등)
-                        /></Link>
-                      </div>
-                      <div className="lg:w-1/4 lg:px-12">
-                          <div className="font-bold tracking-tight">
-                            <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
-                              {title}
-                            </Link>
-                          </div>
-                          <div className='font-bold'>
-                            {formatDateRange(date, date)}
-                          </div>
-                          <div className="flex flex-wrap lg:pt-4">
-                            {tags?.map((tag) => <Tag key={tag} text={tag} />)}
-                          </div>
-                          <div className="flex flex-wrap">
-                            {cities?.map((city) => <Tag key={city} text={city} />)}
-                          </div>
-                        
-
-                      </div>
-                      <div className="pt-4 lg:pt-0 lg:w-1/4 lg:px-12 font-bold tracking-tight max-w-none">
-                          {summary}
-                        </div>
-                  </li>
-                )
-              })}
-
-            </ul>
-            {pagination && pagination.totalPages > 1 && (
-              <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
-            )}
-            
-          </div>
-        </div>
+      </div>
     </>
   )
 }

@@ -9,11 +9,32 @@ import type { Blog } from 'contentlayer/generated'
 import Link from '@/components/Link'
 import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
-import tagData from 'app/tag-data.json'
-import { useState } from 'react';
-import React from 'react';
+
+import yearData from 'app/year-data.json'
+import projectTagData from 'app/project-tag-data.json'
+import peopleTagData from 'app/people-tag-data.json'
+
+import { useState } from 'react'
+import React from 'react'
 import { useProjectTagStore, useYearTagStore, usePeopleTagStore } from 'app/store'
 
+function slugToString(slug) {
+  return slug.replace(/-/g, ' ')
+}
+
+function slugify(str) {
+  return str
+    .toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]/g, '')
+}
+
+function hasIntersection(array1, array2) {
+  const slugifiedArray1 = array1.map(slugify)
+  const slugifiedArray2 = array2.map(slugify)
+
+  return slugifiedArray1.some((item) => slugifiedArray2.includes(item))
+}
 
 interface PaginationProps {
   totalPages: number
@@ -28,19 +49,19 @@ interface ListLayoutProps {
 
 function formatDateRange(startDate, endDate) {
   // Date 객체로 변환
-  const start = new Date(startDate);
-  const end = new Date(endDate);
+  const start = new Date(startDate)
+  const end = new Date(endDate)
 
   // 시작 날짜 형식: "YYYY. MM. DD"
-  const startFormatted = `${start.getFullYear()}. ${String(start.getMonth() + 1).padStart(2, '0')}. ${String(start.getDate()).padStart(2, '0')}`;
+  const startFormatted = `${start.getFullYear()}. ${String(start.getMonth() + 1).padStart(2, '0')}. ${String(start.getDate()).padStart(2, '0')}`
 
   // 끝 날짜 형식: "MM.DD" 또는 "MM.DD.YYYY"
   const endFormatted =
     start.getFullYear() === end.getFullYear()
       ? `${String(end.getMonth() + 1).padStart(2, '0')}.${String(end.getDate()).padStart(2, '0')}`
-      : `${String(end.getMonth() + 1).padStart(2, '0')}.${String(end.getDate()).padStart(2, '0')}.${end.getFullYear()}`;
+      : `${String(end.getMonth() + 1).padStart(2, '0')}.${String(end.getDate()).padStart(2, '0')}.${end.getFullYear()}`
 
-  return `${startFormatted}. - ${endFormatted}.`;
+  return `${startFormatted}. - ${endFormatted}.`
 }
 
 function Pagination({ totalPages, currentPage }: PaginationProps) {
@@ -83,78 +104,77 @@ function Pagination({ totalPages, currentPage }: PaginationProps) {
   )
 }
 
-
 const YearTagCheckboxes: React.FC = () => {
-  const yearTags = ["2020", "2021", "2022"];
-  const { selectedTags, toggleTag } = useYearTagStore();
+  const yearTags = Object.keys(yearData)
+  const { selectedTags, toggleTag } = useYearTagStore()
 
   return (
     <div>
       {yearTags.map((tag) => (
-        <label key={tag} className="flex items-center cursor-pointer">
-          <input 
-            type="checkbox" 
-            name={`tag-${tag}`} 
-            value={tag} 
-            className="peer invisible w-0" 
-            defaultChecked 
+        <label key={tag} className="flex cursor-pointer items-center">
+          <input
+            type="checkbox"
+            name={`tag-${tag}`}
+            value={tag}
+            className="peer invisible w-0"
+            defaultChecked
+            onChange={() => toggleTag(tag)}
           />
-          <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-4 border-black rounded-full scale-35"></span>
+          <span className="h-5 w-5 scale-35 rounded-full border-4 border-black peer-checked:h-5 peer-checked:w-5 peer-checked:rounded-full peer-checked:bg-black"></span>
           {tag}
         </label>
       ))}
     </div>
-  );
-};
+  )
+}
 
 const ProjectTagCheckboxes: React.FC = () => {
-  const projectsTags = ["2020", "2021", "2022"];
-  const { selectedTags, toggleTag } = useProjectTagStore();
+  const projectsTags = Object.keys(projectTagData)
+  const { selectedTags, toggleTag } = useProjectTagStore()
 
   return (
     <div>
       {projectsTags.map((tag) => (
-        <label key={tag} className="flex items-center cursor-pointer">
-          <input 
-            type="checkbox" 
-            name={`tag-${tag}`} 
-            value={tag} 
-            className="peer invisible w-0" 
-            defaultChecked 
+        <label key={tag} className="flex cursor-pointer items-center">
+          <input
+            type="checkbox"
+            name={`tag-${tag}`}
+            value={tag}
+            className="peer invisible w-0"
+            defaultChecked
             onChange={() => toggleTag(tag)}
           />
-          <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-4 border-black rounded-full scale-35"></span>
-          {tag}
+          <span className="h-5 w-5 scale-35 rounded-full border-4 border-black peer-checked:h-5 peer-checked:w-5 peer-checked:rounded-full peer-checked:bg-black"></span>
+          {slugToString(tag)}
         </label>
       ))}
     </div>
-  );
-};
+  )
+}
 
 const PeopleTagCheckboxes: React.FC = () => {
-  const peopleTags = ["2020", "2021", "2022"];
-  const { selectedTags, toggleTag } = usePeopleTagStore();
+  const peopleTags = Object.keys(peopleTagData)
+  const { selectedTags, toggleTag } = usePeopleTagStore()
 
   return (
     <div>
       {peopleTags.map((tag) => (
-        <label key={tag} className="flex items-center cursor-pointer">
-          <input 
-            type="checkbox" 
-            name={`tag-${tag}`} 
-            value={tag} 
-            className="peer invisible w-0" 
-            defaultChecked 
+        <label key={tag} className="flex cursor-pointer items-center">
+          <input
+            type="checkbox"
+            name={`tag-${tag}`}
+            value={tag}
+            className="peer invisible w-0"
+            onChange={() => toggleTag(tag)}
+            defaultChecked
           />
-          <span className="peer-checked:bg-black peer-checked:rounded-full peer-checked:w-5 peer-checked:h-5 w-5 h-5 border-4 border-black rounded-full scale-35"></span>
-          {tag}
+          <span className="h-5 w-5 scale-35 rounded-full border-4 border-black peer-checked:h-5 peer-checked:w-5 peer-checked:rounded-full peer-checked:bg-black"></span>
+          {slugToString(tag)}
         </label>
       ))}
     </div>
-  );
-};
-
-
+  )
+}
 
 export default function ArchiveListLayout({
   posts,
@@ -163,97 +183,102 @@ export default function ArchiveListLayout({
   pagination,
 }: ListLayoutProps) {
   const pathname = usePathname()
-  const tagCounts = tagData as Record<string, number>
-  const tagKeys = Object.keys(tagCounts)
-  const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
+  // const tagCounts = tagData as Record<string, number>
+  // const tagKeys = Object.keys(tagCounts)
+  // const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
 
   const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
 
-  const [opentag, setOpentag] = useState(false);
-  const [openProjectTag, setOpenProjectTag] = useState(false);
-  const [openPeopleTag, setOpenPeopleTag] = useState(false);
+  const [opentag, setOpentag] = useState(false)
+  const [openProjectTag, setOpenProjectTag] = useState(false)
+  const [openPeopleTag, setOpenPeopleTag] = useState(false)
 
-
+  const { selectedTags: selectedProject } = useProjectTagStore()
+  const { selectedTags: selectedPeople } = usePeopleTagStore()
+  const { selectedTags: selectedYear } = useYearTagStore()
 
   return (
     <>
-      <div className='pb-32'>
-        <div className="w-full pb-6 pt-6 h-40">
+      <div className="pb-32">
+        <div className="h-40 w-full pb-6 pt-6"></div>
+        <div className="flex gap-4 px-10 pb-10 font-bold tracking-tight">
+          {/* tag Dropdown */}
+          <div
+            className="relative p-4 pl-0 hover:underline"
+            onMouseEnter={() => setOpentag(true)}
+            onMouseLeave={() => setOpentag(false)}
+          >
+            YEAR
+            {opentag && (
+              <div className="absolute left-0 mt-2 w-40 bg-white shadow-around">
+                <div className="p-2">
+                  <YearTagCheckboxes />
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* PROJECT TAG Dropdown */}
+          <div
+            className="relative p-4 pl-0 hover:underline"
+            onMouseEnter={() => setOpenProjectTag(true)}
+            onMouseLeave={() => setOpenProjectTag(false)}
+          >
+            PROJECT TAG
+            {openProjectTag && (
+              <div className="absolute left-0 mt-2 w-40 bg-white shadow-around">
+                <div className="p-2">
+                  <ProjectTagCheckboxes />
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* PEOPLE TAG Dropdown */}
+          <div
+            className="relative p-4 pl-0 hover:underline"
+            onMouseEnter={() => setOpenPeopleTag(true)}
+            onMouseLeave={() => setOpenPeopleTag(false)}
+          >
+            PEOPLE TAG
+            {openPeopleTag && (
+              <div className="absolute left-0 mt-2 w-40 bg-white shadow-around">
+                <div className="p-2">
+                  <PeopleTagCheckboxes />
+                </div>
+              </div>
+            )}
+          </div>
         </div>
-        <div className="flex gap-4 pb-10 font-bold tracking-tight px-10">
-      {/* tag Dropdown */}
-      <div
-        className="relative p-4 pl-0 hover:underline"
-        onMouseEnter={() => setOpentag(true)}
-        onMouseLeave={() => setOpentag(false)}
-      >
-        YEAR
-        {opentag && (
-          <div className="absolute left-0 mt-2 w-40 bg-white shadow-around">
-            <div className="p-2">
-              <YearTagCheckboxes/>
-            </div>
-          </div>
-        )}
-      </div>
+        <div className="flex px-10 sm:space-x-24">
+          <div className="justify-content-between grid w-full grid-cols-1 gap-x-28 gap-y-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {displayPosts.map((post) => {
+              const { path, date, title, dtype, summary, tags, years, start, finish, cities } = post
 
-      {/* PROJECT TAG Dropdown */}
-      <div
-        className="relative p-4 pl-0 hover:underline"
-        onMouseEnter={() => setOpenProjectTag(true)}
-        onMouseLeave={() => setOpenProjectTag(false)}
-      >
-        PROJECT TAG
-        {openProjectTag && (
-          <div className="absolute left-0 mt-2 w-40 bg-white shadow-around">
-            <div className="p-2">
-            <ProjectTagCheckboxes/>
-            </div>
-          </div>
-        )}
-      </div>
+              if (dtype == 'people' && !hasIntersection(selectedPeople, tags)) return
+              if (dtype == 'project' && !hasIntersection(selectedProject, tags)) return
+              if (!hasIntersection(selectedYear, years)) return
 
-      {/* PEOPLE TAG Dropdown */}
-      <div
-        className="relative p-4 pl-0 hover:underline"
-        onMouseEnter={() => setOpenPeopleTag(true)}
-        onMouseLeave={() => setOpenPeopleTag(false)}
-      >
-        PEOPLE TAG
-        {openPeopleTag && (
-          <div className="absolute left-0 mt-2 w-40 bg-white shadow-around">
-            <div className="p-2">
-              <ProjectTagCheckboxes/>
-            </div>
-          </div>
-        )}
-      </div>
-    </div>
-        <div className="flex sm:space-x-24 px-10">
-          <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-28 gap-y-4 justify-content-between">
-              {displayPosts.map((post) => {
-                const { path, date, title, dtype, summary, tags, start, finish, cities } = post
-                return (
-                  <div key={path} className=" aspect-[1/1] border-0.5 border-black px-3 py-2">
-                    <div className="font-bold tracking-tight">
-                        <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
-                          {title}
-                        </Link>
-                      </div>
-                      {(dtype == 'project') &&
-                        <div className='font-bold'>
-                          {formatDateRange(start, finish)}
-                        </div>}
-                      <div className="flex flex-wrap">
-                        {tags?.map((tag) => <Tag key={tag} text={tag} />)}
-                      </div>
-                      <div className="flex flex-wrap">
-                        {cities?.map((city) => <Tag key={city} text={city} />)}
-                    </div>
+              return (
+                <div key={path} className=" aspect-[1/1] border-0.5 border-black px-3 py-2">
+                  <div className="font-bold tracking-tight">
+                    <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
+                      {title}
+                    </Link>
                   </div>
-                )
-              })}
-            
+                  {dtype == 'project' && (
+                    <div className="font-bold">{formatDateRange(start, finish)}</div>
+                  )}
+                  <div className="flex flex-wrap">
+                    {tags?.map((tag) => <Tag key={tag} text={tag} />)}
+                  </div>
+                  <div className="flex flex-wrap">
+                    {cities?.map((city) => <Tag key={city} text={city} />)}
+                  </div>
+                </div>
+              )
+            })}
+
             {pagination && pagination.totalPages > 1 && (
               <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
             )}
