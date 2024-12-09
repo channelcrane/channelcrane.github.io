@@ -76,12 +76,43 @@ function PeopleLayout({ content, authorDetails, next, prev, children }: LayoutPr
   )
 }
 
+function BlogLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
+  const { filePath, dtype, path, slug, date, title, tags, credit, imagePaths } = content
+  const basePath = path.split('/')[0]
+
+  return (
+    <SectionContainer>
+      <ScrollTopAndComment />
+      <article>
+        <div className="h-52 w-full"></div>
+        <div className="flex flex-col lg:flex-row">
+          <div className='w-1/4'></div>
+          <div className='w-full lg:w-1/2 flex flex-col'>
+            <div className="no-scrollbar overflow-scroll pl-4 pb-4 lg:pb-0 lg:pl-12 px-12 font-bold w-full">
+              {title}
+            </div>
+            <div className="no-scrollbar overflow-scroll pl-4 lg:pl-12 font-bold w-full break-keep lg:pt-4">
+            {children}
+            </div>
+          </div>
+          <div className='w-1/4'></div>
+        </div>
+        <div className='h-24'></div>
+      </article>
+    </SectionContainer>
+  )
+}
+
+
+
 export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
   const { filePath, dtype, path, slug, date, title, tags, credit, imagePaths } = content
   const basePath = path.split('/')[0]
 
   const handleLinkClick = () => {}
   if (dtype === 'people') return PeopleLayout({ content, authorDetails, next, prev, children })
+  if (dtype === 'other') return BlogLayout({ content, authorDetails, next, prev, children })
+
 
   return (
     <SectionContainer>

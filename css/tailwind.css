@@ -7,6 +7,10 @@
     font-size: 0.9rem; /* 전체 폰트 크기를 14px로 설정 */
     word-break: keep-all;
   }
+
+  p {
+    padding-bottom: 1rem;
+  }
 }
 
 .task-list-item::before {
