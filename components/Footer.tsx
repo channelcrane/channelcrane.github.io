@@ -4,7 +4,7 @@ import SocialIcon from '@/components/social-icons'
 import Image from 'next/image'
 export default function Footer() {
   return (
-    <footer className="fixed bottom-0 left-0 max-h-[80px] w-screen bg-white py-4 pt-0 text-center font-bold tracking-tight text-black transition-all delay-0 duration-700 ease-in-out hover:h-auto hover:max-h-[500px] hover:shadow-up hover:delay-700 z-80">
+    <footer className="fixed bottom-0 left-0 z-80 max-h-[80px] w-screen bg-white py-4 pt-0 text-center font-bold tracking-tight text-black transition-all delay-0 duration-700 ease-in-out hover:h-auto hover:max-h-[500px] hover:shadow-up hover:delay-700">
       <div className="h-[80px] pt-0 text-center">
         <Image
           className="inline-block"
