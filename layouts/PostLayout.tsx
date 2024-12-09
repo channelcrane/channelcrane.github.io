@@ -59,15 +59,15 @@ function PeopleLayout({ content, authorDetails, next, prev, children }: LayoutPr
       <article>
         <div className="h-52 w-full"></div>
         <div className="flex flex-col lg:flex-row">
-          <div className="no-scrollbar overflow-scroll px-12 font-bold lg:w-1/2">
+          <div className="no-scrollbar overflow-scroll pl-4 pb-4 lg:pb-0 lg:pl-12 px-12 font-bold lg:w-1/2">
             {title}
             <br />
             {tags}
           </div>
-          <div className="no-scrollbar overflow-scroll pl-12 font-bold lg:w-1/4">{children}</div>
-          <div className="no-scrollbar overflow-scroll px-4 text-right font-bold lg:w-1/4">
+          <div className="no-scrollbar overflow-scroll pl-4 lg:pl-12 font-bold lg:w-1/4 break-keep">{children}</div>
+          {/* <div className="no-scrollbar overflow-scroll px-4 text-right font-bold lg:w-1/4">
             site
-          </div>
+          </div> */}
         </div>
 
         <ProjectPage></ProjectPage>
@@ -108,7 +108,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               </div>
             ))}
           </div>
-          <div className="no-scrollbar prose max-w-none overflow-scroll p-4 pt-0 font-bold  text-black lg:h-body lg:w-1/4">
+          <div className="no-scrollbar prose max-w-none overflow-scroll p-4 pt-0 font-bold  text-black lg:h-body lg:w-1/4 break-keep">
             {children}
           </div>
           <div className="no-scrollbar overflow-scroll pt-8 font-bold lg:h-body lg:w-1/4 lg:pt-0">

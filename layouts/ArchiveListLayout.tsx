@@ -205,10 +205,11 @@ export default function ArchiveListLayout({
           {/* tag Dropdown */}
           <div
             className="relative p-4 pl-0 hover:underline"
+            
             onMouseEnter={() => setOpentag(true)}
             onMouseLeave={() => setOpentag(false)}
           >
-            YEAR
+            <a onClick={() => setOpentag(prev => !prev)}>YEAR </a>
             {opentag && (
               <div className="absolute left-0 mt-2 w-40 bg-white shadow-around">
                 <div className="p-2">
@@ -224,7 +225,7 @@ export default function ArchiveListLayout({
             onMouseEnter={() => setOpenProjectTag(true)}
             onMouseLeave={() => setOpenProjectTag(false)}
           >
-            PROJECT TAG
+            <a onClick={() => setOpenProjectTag(prev => !prev)}> PROJECT TAG </a>
             {openProjectTag && (
               <div className="absolute left-0 mt-2 w-40 bg-white shadow-around">
                 <div className="p-2">
@@ -240,7 +241,7 @@ export default function ArchiveListLayout({
             onMouseEnter={() => setOpenPeopleTag(true)}
             onMouseLeave={() => setOpenPeopleTag(false)}
           >
-            PEOPLE TAG
+            <a onClick={() => setOpenPeopleTag(prev => !prev)}>PEOPLE TAG</a>
             {openPeopleTag && (
               <div className="absolute left-0 mt-2 w-40 bg-white shadow-around">
                 <div className="p-2">

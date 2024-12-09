@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  html {
+    font-size: 0.9rem; /* 전체 폰트 크기를 14px로 설정 */
+    word-break: keep-all;
+  }
+}
+
 .task-list-item::before {
   @apply hidden;
 }

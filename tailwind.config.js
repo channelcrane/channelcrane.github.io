@@ -17,18 +17,18 @@ module.exports = {
     extend: {
       spacing: {
         // 필요한 높이 값을 추가하세요
-        'body': 'calc(100vh - 13rem - 80px)',
+        body: 'calc(100vh - 13rem - 80px)',
       },
       scale: {
-        '35': '.35'
+        35: '.35',
       },
       borderWidth: {
-        '0.5': '0.75px',
-        '6': '5px'
+        0.5: '0.75px',
+        6: '5px',
       },
       boxShadow: {
-        'up': '0 -3px 6px rgba(0, 0, 0, 0.16)', // 위쪽 그림자 커스텀 값
-        'around': '0 0 6px rgba(0, 0, 0, 0.16)',
+        up: '0 -3px 6px rgba(0, 0, 0, 0.16)', // 위쪽 그림자 커스텀 값
+        around: '0 0 6px rgba(0, 0, 0, 0.16)',
       },
       lineHeight: {
         11: '2.75rem',

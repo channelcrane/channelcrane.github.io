@@ -96,7 +96,7 @@ export default function ProjectListLayout({
     <>
       <div className="pb-32">
         <div className="h-52 w-full pb-6 pt-6 "></div>
-        <div className="flex px-12 sm:space-x-24">
+        <div className="flex px-5 lg:px-12 sm:space-x-24">
           <ul className="w-full">
             {displayPosts.map((post) => {
               const { path, date, title, dtype, summary, tags, cities, start, finish, imagePaths } =
@@ -126,10 +126,10 @@ export default function ProjectListLayout({
                       </Link>
                     </div>
                     <div className="font-bold">{formatDateRange(date, date)}</div>
-                    <div className="flex flex-wrap lg:pt-4">
+                    <div className="h-0 invisible lg:h-auto lg:visible flex flex-wrap lg:pt-4">
                       {tags?.map((tag) => <Tag key={tag} text={tag} />)}
                     </div>
-                    <div className="flex flex-wrap">
+                    <div className="h-0 invisible lg:h-auto lg:visible flex flex-wrap">
                       {cities?.map((city) => <Tag key={city} text={city} />)}
                     </div>
                   </div>
