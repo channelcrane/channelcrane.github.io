@@ -10,7 +10,7 @@ import ArchiveListLayout from '@/layouts/ArchiveListLayout'
 export async function generateMetadata(): Promise<Metadata> {
   const type = 'project'
   return genPageMetadata({
-    title: type,
+    title: 'Archive',
     description: `${siteMetadata.title} ${type} content`,
     alternates: {
       canonical: './',

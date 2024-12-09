@@ -10,7 +10,7 @@ import PeopleListLayout from '@/layouts/PeopleListLayout'
 export async function generateMetadata(): Promise<Metadata> {
   const type = 'people'
   return genPageMetadata({
-    title: type,
+    title: 'People',
     description: `${siteMetadata.title} ${type} content`,
     alternates: {
       canonical: './',

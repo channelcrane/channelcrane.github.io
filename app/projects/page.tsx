@@ -10,7 +10,7 @@ import ProjectListLayout from '@/layouts/ProjectListLayout'
 export async function generateMetadata(): Promise<Metadata> {
   const type = 'project'
   return genPageMetadata({
-    title: type,
+    title: 'Projects',
     description: `${siteMetadata.title} ${type} content`,
     alternates: {
       canonical: './',
