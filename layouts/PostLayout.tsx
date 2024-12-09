@@ -59,12 +59,14 @@ function PeopleLayout({ content, authorDetails, next, prev, children }: LayoutPr
       <article>
         <div className="h-52 w-full"></div>
         <div className="flex flex-col lg:flex-row">
-          <div className="no-scrollbar overflow-scroll pl-4 pb-4 lg:pb-0 lg:pl-12 px-12 font-bold lg:w-1/2">
+          <div className="no-scrollbar overflow-scroll px-12 pb-4 pl-4 font-bold lg:w-1/2 lg:pb-0 lg:pl-12">
             {title}
             <br />
             {tags}
           </div>
-          <div className="no-scrollbar overflow-scroll pl-4 lg:pl-12 font-bold lg:w-1/4 break-keep">{children}</div>
+          <div className="no-scrollbar overflow-scroll break-keep pl-4 font-bold lg:w-1/4 lg:pl-12">
+            {children}
+          </div>
           {/* <div className="no-scrollbar overflow-scroll px-4 text-right font-bold lg:w-1/4">
             site
           </div> */}
@@ -86,24 +88,22 @@ function BlogLayout({ content, authorDetails, next, prev, children }: LayoutProp
       <article>
         <div className="h-52 w-full"></div>
         <div className="flex flex-col lg:flex-row">
-          <div className='w-1/4'></div>
-          <div className='w-full lg:w-1/2 flex flex-col'>
-            <div className="no-scrollbar overflow-scroll pl-4 pb-4 lg:pb-0 lg:pl-12 px-12 font-bold w-full">
+          <div className="w-1/4"></div>
+          <div className="flex w-full flex-col lg:w-1/2">
+            <div className="no-scrollbar w-full overflow-scroll px-12 pb-4 pl-4 font-bold lg:pb-0 lg:pl-12">
               {title}
             </div>
-            <div className="no-scrollbar overflow-scroll pl-4 lg:pl-12 font-bold w-full break-keep lg:pt-4">
-            {children}
+            <div className="no-scrollbar w-full overflow-scroll break-keep pl-4 font-bold lg:pl-12 lg:pt-4">
+              {children}
             </div>
           </div>
-          <div className='w-1/4'></div>
+          <div className="w-1/4"></div>
         </div>
-        <div className='h-24'></div>
+        <div className="h-24"></div>
       </article>
     </SectionContainer>
   )
 }
-
-
 
 export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
   const { filePath, dtype, path, slug, date, title, tags, credit, imagePaths } = content
@@ -112,7 +112,6 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
   const handleLinkClick = () => {}
   if (dtype === 'people') return PeopleLayout({ content, authorDetails, next, prev, children })
   if (dtype === 'other') return BlogLayout({ content, authorDetails, next, prev, children })
-
 
   return (
     <SectionContainer>
@@ -139,7 +138,7 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
               </div>
             ))}
           </div>
-          <div className="no-scrollbar prose max-w-none overflow-scroll p-4 pt-0 font-bold  text-black lg:h-body lg:w-1/4 break-keep">
+          <div className="no-scrollbar prose max-w-none overflow-scroll break-keep p-4 pt-0  font-bold text-black lg:h-body lg:w-1/4">
             {children}
           </div>
           <div className="no-scrollbar overflow-scroll pt-8 font-bold lg:h-body lg:w-1/4 lg:pt-0">
