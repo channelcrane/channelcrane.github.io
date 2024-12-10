@@ -167,6 +167,7 @@ export const Blog = defineDocumentType(() => ({
     dtype: { type: 'string' },
     cities: { type: 'list', of: { type: 'string' }, default: [] },
     people: { type: 'list', of: { type: 'string' }, default: [] },
+    links: { type: 'list', of: { type: 'string' }, default: [] },
     imagePaths: { type: 'list', of: { type: 'string' }, default: [] },
     credit: { type: 'json', default:{}}
   },

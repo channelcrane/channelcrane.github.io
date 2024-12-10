@@ -50,7 +50,7 @@ function ProjectPage() {
 }
 
 function PeopleLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
-  const { filePath, dtype, path, slug, date, title, tags, credit, imagePaths } = content
+  const { filePath, dtype, path, slug, date, title, tags, links, credit, imagePaths } = content
   const basePath = path.split('/')[0]
 
   return (
@@ -67,9 +67,9 @@ function PeopleLayout({ content, authorDetails, next, prev, children }: LayoutPr
           <div className="no-scrollbar overflow-scroll break-keep pl-4 font-bold lg:w-1/4 lg:pl-12">
             {children}
           </div>
-          {/* <div className="no-scrollbar overflow-scroll px-4 text-right font-bold lg:w-1/4">
-            site
-          </div> */}
+          <div className="no-scrollbar overflow-scroll px-4 text-right font-bold lg:w-1/4">
+            {(links.length>0)? <a href={links[0]} target="_blank">site</a>:""}
+          </div>
         </div>
 
         <ProjectPage></ProjectPage>
