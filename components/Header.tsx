@@ -9,6 +9,7 @@ import SearchButton from './SearchButton'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
+
 const Header = () => {
   const pathName = usePathname()
   let headerClass = 'w-full fixed top-0 left-0 transition-all z-70'
@@ -18,20 +19,8 @@ const Header = () => {
 
   let menuClass = ''
   if (pathName == '/')
-    menuClass = 'flex justify-between items-center py-4 px-16 font-bold  w-full pb-0'
+    menuClass = 'flex justify-between items-center py-4 px-16 font-bold  w-full pb-0 lg:fixed lg:top-[47%] lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 lg:fit-content'
   else menuClass = 'flex justify-between items-center py-4 px-16 font-bold'
-
-  const headerStyle: React.CSSProperties =
-    pathName === '/'
-      ? {
-          // width: "fit-content",
-          height: 'fit-content',
-          transform: 'translate(-50%, -50%)',
-          top: '47%',
-          left: '50%',
-          position: 'fixed',
-        }
-      : {}
 
   return (
     <header className={headerClass}>
@@ -46,7 +35,7 @@ const Header = () => {
         </Link>
       </div>
 
-      <div className={menuClass} style={headerStyle}>
+      <div className={menuClass}>
         {/* <div className="no-scrollbar hidden max-w-40 items-center space-x-4 overflow-x-auto sm:flex sm:space-x-6 md:max-w-72 lg:max-w-96"> */}
         {headerNavLinks
           .filter((link) => link.href !== '/')
