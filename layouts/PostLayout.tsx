@@ -68,7 +68,13 @@ function PeopleLayout({ content, authorDetails, next, prev, children }: LayoutPr
             {children}
           </div>
           <div className="no-scrollbar overflow-scroll px-4 text-right font-bold lg:w-1/4">
-            {(links.length>0)? <a href={links[0]} target="_blank">site</a>:""}
+            {links.length > 0 ? (
+              <a href={links[0]} target="_blank">
+                site
+              </a>
+            ) : (
+              ''
+            )}
           </div>
         </div>
 

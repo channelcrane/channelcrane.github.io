@@ -9,7 +9,6 @@ import SearchButton from './SearchButton'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
-
 const Header = () => {
   const pathName = usePathname()
   let headerClass = 'w-full fixed top-0 left-0 transition-all z-70'
@@ -19,7 +18,8 @@ const Header = () => {
 
   let menuClass = ''
   if (pathName == '/')
-    menuClass = 'flex justify-between items-center py-4 px-16 font-bold  w-full pb-0 lg:fixed lg:top-[47%] lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 lg:fit-content'
+    menuClass =
+      'flex justify-between items-center py-4 px-16 font-bold  w-full pb-0 lg:fixed lg:top-[47%] lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 lg:fit-content'
   else menuClass = 'flex justify-between items-center py-4 px-16 font-bold'
 
   return (
