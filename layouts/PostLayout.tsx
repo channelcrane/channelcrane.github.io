@@ -1,12 +1,8 @@
 import { ReactNode } from 'react'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog, Authors } from 'contentlayer/generated'
-import Comments from '@/components/Comments'
-import Link from '@/components/Link'
-import PageTitle from '@/components/PageTitle'
 import SectionContainer from '@/components/SectionContainer'
 import Image from '@/components/Image'
-import Tag from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import ScrollTopAndComment from '@/components/ScrollTopAndComment'
 // import Image from 'next/image'
@@ -35,24 +31,36 @@ interface LayoutProps {
   children: ReactNode
 }
 
-function ProjectPage() {
+interface ProjectPageWithPeopleProps {
+  people: string
+}
+
+function ProjectPage({ people }: ProjectPageWithPeopleProps) {
+  if (people === '') return <></>
+  {
+    console.log(people)
+  }
+
   const type = 'project'
   const title = type[0].toUpperCase() + type.slice(1) // "Project"로 설정
   const filteredPosts = allCoreContent(
-    sortPosts(allBlogs.filter((post) => post.dtype === type)) // type이 "project"인 게시글만 필터링
+    // sortPosts(allBlogs.filter((post) => (post.dtype === type)&(post.participants.includes(people)))) // type이 "project"인 게시글만 필터링
+    sortPosts(allBlogs.filter((post) => post.participants.includes(people)))
   )
 
   if (filteredPosts.length === 0) {
-    return notFound()
+    return <></>
   }
 
   return <PeopleProjectListLayout posts={filteredPosts} title={title} />
 }
 
 function PeopleLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
-  const { filePath, dtype, path, slug, date, title, tags, links, credit, imagePaths } = content
+  const { filePath, dtype, path, slug, date, title, tags, peopleID, links, credit, imagePaths } =
+    content
   const basePath = path.split('/')[0]
 
+  console.log(peopleID)
   return (
     <SectionContainer>
       <ScrollTopAndComment />
@@ -78,10 +86,13 @@ function PeopleLayout({ content, authorDetails, next, prev, children }: LayoutPr
           </div>
         </div>
 
-        <ProjectPage></ProjectPage>
+        <ProjectPage people={peopleID}></ProjectPage>
       </article>
     </SectionContainer>
   )
+}
+ProjectPage.defaultProps = {
+  people: '', // people이 undefined일 경우 빈 배열로 기본값 할당
 }
 
 function BlogLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
@@ -111,13 +122,22 @@ function BlogLayout({ content, authorDetails, next, prev, children }: LayoutProp
   )
 }
 
-export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
-  const { filePath, dtype, path, slug, date, title, tags, credit, imagePaths } = content
+function ProjectLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
+  const {
+    filePath,
+    cranePositions,
+    dtype,
+    path,
+    cities,
+    slug,
+    date,
+    projectLinks,
+    title,
+    tags,
+    credit,
+    imagePaths,
+  } = content
   const basePath = path.split('/')[0]
-
-  const handleLinkClick = () => {}
-  if (dtype === 'people') return PeopleLayout({ content, authorDetails, next, prev, children })
-  if (dtype === 'other') return BlogLayout({ content, authorDetails, next, prev, children })
 
   return (
     <SectionContainer>
@@ -131,8 +151,8 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
                 <Image
                   src={src}
                   alt={`Image ${index + 1}`}
-                  width={100}
-                  height={100}
+                  width={1024}
+                  height={1024}
                   style={{
                     objectFit: 'contain',
                     width: '100%',
@@ -147,35 +167,97 @@ export default function PostLayout({ content, authorDetails, next, prev, childre
           <div className="no-scrollbar prose max-w-none overflow-scroll break-keep p-4 pt-0  font-bold text-black lg:h-body lg:w-1/4">
             {children}
           </div>
+
           <div className="no-scrollbar overflow-scroll pt-8 font-bold lg:h-body lg:w-1/4 lg:pt-0">
             <div className="p-4 pt-0">{title}</div>
             <div className="p-4">
+              City
+              <br />
+              {cities.map((src, idx) => (
+                <span key={idx}>
+                  {idx == 0 ? '' : '/ '} {src}{' '}
+                </span>
+              ))}
+            </div>
+            <div className="p-4">
               Crane position
               <br />
-              Producer / Project Manager / Tech Coordinator / Coordinator
+              {cranePositions.map((src, idx) => (
+                <span key={idx}>
+                  {idx == 0 ? '' : '/ '} {src}{' '}
+                </span>
+              ))}
             </div>
+            {Object.keys(credit).length !== 0 && (
+              <div className="p-4">
+                Credits
+                <br />
+                {Object.entries(credit['Credits']).map(([name, link], idx) => (
+                  <span key={idx}>
+                    {link !== '' ? (
+                      <a href={`${link}`} rel="noopener noreferrer" className="hover:underline">
+                        {idx == 0 ? '' : '/ '} {name}{' '}
+                      </a>
+                    ) : (
+                      <span>
+                        {idx == 0 ? '' : '/ '} {name}{' '}
+                      </span>
+                    )}
+                  </span>
+                ))}
+              </div>
+            )}
+            {Object.keys(projectLinks).length !== 0 && (
+              <div className="p-4">
+                Links
+                <br />
+                {Object.entries(projectLinks['Links']).map(([name, link], idx) => (
+                  <div key={idx}>
+                    {link !== '' ? (
+                      <a
+                        href={`http://${link}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline"
+                      >
+                        {' '}
+                        {name}{' '}
+                      </a>
+                    ) : (
+                      <span>
+                        {idx == 0 ? '' : '/ '} {name}{' '}
+                      </span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
             <div className="p-4">
-              Credits
+              Category
               <br />
-              Artist LEE YONA / Art Director KIM SUNJEONG / Exhibition Manager CHO HEEYEON /
-              Exhibition Assistant YOO SEUNGAH
-            </div>
-            <div className="p-4">
-              Link
-              <br />
-              Https://www.instagram.com
-            </div>
-            <div className="p-4">
-              Tag
-              <br />
-              Installation
+              {tags.map((src, idx) => (
+                <span key={idx}>
+                  {idx == 0 ? '' : '/ '} {src}{' '}
+                </span>
+              ))}
             </div>
             {/* <div>
-                  {credit}
-                </div> */}
+              {credit}
+            </div> */}
           </div>
         </div>
       </article>
     </SectionContainer>
   )
+}
+
+export default function PostLayout({ content, authorDetails, next, prev, children }: LayoutProps) {
+  const { filePath, dtype, path, slug, date, title, tags, credit, imagePaths } = content
+  const basePath = path.split('/')[0]
+
+  const handleLinkClick = () => {}
+  if (dtype === 'people') return PeopleLayout({ content, authorDetails, next, prev, children })
+  else if (dtype === 'project')
+    return ProjectLayout({ content, authorDetails, next, prev, children })
+  else return BlogLayout({ content, authorDetails, next, prev, children })
 }

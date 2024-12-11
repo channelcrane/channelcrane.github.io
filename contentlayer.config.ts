@@ -156,9 +156,11 @@ export const Blog = defineDocumentType(() => ({
     finish: { type: 'date'},
     years: { type: 'list', of: { type: 'string' }, default: [] },
     tags: { type: 'list', of: { type: 'string' }, default: [] },
+    cranePositions: { type: 'list', of: { type: 'string' }, default: [] },
     lastmod: { type: 'date' },
     draft: { type: 'boolean' },
     summary: { type: 'string' },
+    peopleID: { type: 'string' },
     images: { type: 'json' },
     authors: { type: 'list', of: { type: 'string' } },
     layout: { type: 'string' },
@@ -167,9 +169,11 @@ export const Blog = defineDocumentType(() => ({
     dtype: { type: 'string' },
     cities: { type: 'list', of: { type: 'string' }, default: [] },
     people: { type: 'list', of: { type: 'string' }, default: [] },
+    participants: { type: 'list', of: { type: 'string' }, default: []},
     links: { type: 'list', of: { type: 'string' }, default: [] },
     imagePaths: { type: 'list', of: { type: 'string' }, default: [] },
-    credit: { type: 'json', default:{}}
+    credit: { type: 'json', default:{}},
+    projectLinks: { type: 'json', default:{}}
   },
   computedFields: {
     ...computedFields,

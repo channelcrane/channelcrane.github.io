@@ -11,6 +11,10 @@
   p {
     padding-bottom: 1rem;
   }
+
+  a {
+    color: black;
+  }
 }
 
 .task-list-item::before {

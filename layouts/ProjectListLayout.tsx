@@ -109,7 +109,7 @@ export default function ProjectListLayout({
                   key={path}
                   className="flex w-full flex-col pb-20 lg:h-60 lg:flex-row lg:space-y-0"
                 >
-                  <div className="relative h-52 bg-red-200 px-12 py-4 lg:h-52 lg:w-1/2">
+                  <div className="relative h-52 px-12 py-4 lg:h-52 lg:w-1/2">
                     <Link href={`/${path}`}>
                       <Image
                         src={imagePaths[0] || '/static/images/sparrowhawk-avatar.jpg'}
