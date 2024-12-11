@@ -7,7 +7,7 @@ import { formatDate } from 'pliny/utils/formatDate'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog } from 'contentlayer/generated'
 import Link from '@/components/Link'
-import Tag from '@/components/Tag'
+import { Tag, NonlinkTag } from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 
 import yearData from 'app/year-data.json'
@@ -296,7 +296,7 @@ export default function ArchiveListLayout({
                     {tags?.map((tag) => <Tag key={tag} text={tag} />)}
                   </div>
                   <div className="flex flex-wrap">
-                    {cities?.map((city) => <Tag key={city} text={city} />)}
+                    {cities?.map((city) => <NonlinkTag key={city} text={city} />)}
                   </div>
                 </div>
               )

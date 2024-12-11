@@ -7,7 +7,7 @@ import { formatDate } from 'pliny/utils/formatDate'
 import { CoreContent } from 'pliny/utils/contentlayer'
 import type { Blog } from 'contentlayer/generated'
 import Link from '@/components/Link'
-import Tag from '@/components/Tag'
+import { Tag, NonlinkTag } from '@/components/Tag'
 import siteMetadata from '@/data/siteMetadata'
 import tagData from 'app/tag-data.json'
 import Image from 'next/image'
@@ -130,7 +130,7 @@ export default function ProjectListLayout({
                       {tags?.map((tag) => <Tag key={tag} text={tag} />)}
                     </div>
                     <div className="invisible flex h-0 flex-wrap lg:visible lg:h-auto">
-                      {cities?.map((city) => <Tag key={city} text={city} />)}
+                      {cities?.map((city) => <NonlinkTag key={city} text={city} />)}
                     </div>
                   </div>
                   <div className="max-w-none pt-4 font-bold tracking-tight lg:w-1/4 lg:px-12 lg:pt-0">

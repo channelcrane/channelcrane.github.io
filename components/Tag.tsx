@@ -10,7 +10,7 @@ function slugToString(slug) {
   return slug.replace(/-/g, ' ')
 }
 
-const Tag = ({ text }: Props) => {
+export const Tag = ({ text }: Props) => {
   return (
     <Link
       href={`/archive`}
@@ -28,4 +28,6 @@ const Tag = ({ text }: Props) => {
   )
 }
 
-export default Tag
+export const NonlinkTag = ({ text }: Props) => {
+  return <span className="mr-4 font-bold">{slugToString(text)}</span>
+}
