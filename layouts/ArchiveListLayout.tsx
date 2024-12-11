@@ -117,8 +117,8 @@ const YearTagCheckboxes: React.FC = () => {
             name={`tag-${tag}`}
             value={tag}
             className="peer invisible w-0"
-            defaultChecked
             onChange={() => toggleTag(tag)}
+            checked={selectedTags.includes(tag)}
           />
           <span className="h-5 w-5 scale-35 rounded-full border-4 border-black peer-checked:h-5 peer-checked:w-5 peer-checked:rounded-full peer-checked:bg-black"></span>
           {tag}
@@ -141,8 +141,8 @@ const ProjectTagCheckboxes: React.FC = () => {
             name={`tag-${tag}`}
             value={tag}
             className="peer invisible w-0"
-            defaultChecked
             onChange={() => toggleTag(tag)}
+            checked={selectedTags.includes(tag)}
           />
           <span className="h-5 w-5 scale-35 rounded-full border-4 border-black peer-checked:h-5 peer-checked:w-5 peer-checked:rounded-full peer-checked:bg-black"></span>
           {slugToString(tag)}
@@ -166,7 +166,7 @@ const PeopleTagCheckboxes: React.FC = () => {
             value={tag}
             className="peer invisible w-0"
             onChange={() => toggleTag(tag)}
-            defaultChecked
+            checked={selectedTags.includes(tag)}
           />
           <span className="h-5 w-5 scale-35 rounded-full border-4 border-black peer-checked:h-5 peer-checked:w-5 peer-checked:rounded-full peer-checked:bg-black"></span>
           {slugToString(tag)}
@@ -193,9 +193,9 @@ export default function ArchiveListLayout({
   const [openProjectTag, setOpenProjectTag] = useState(false)
   const [openPeopleTag, setOpenPeopleTag] = useState(false)
 
-  const { selectedTags: selectedProject } = useProjectTagStore()
-  const { selectedTags: selectedPeople } = usePeopleTagStore()
-  const { selectedTags: selectedYear } = useYearTagStore()
+  const { selectedAll: allProject, selectedTags: selectedProject } = useProjectTagStore()
+  const { selectedAll: allPeople, selectedTags: selectedPeople } = usePeopleTagStore()
+  const { selectedAll: allYear, selectedTags: selectedYear } = useYearTagStore()
 
   return (
     <>
@@ -277,6 +277,7 @@ export default function ArchiveListLayout({
             {displayPosts.map((post) => {
               const { path, date, title, dtype, summary, tags, years, start, finish, cities } = post
 
+              if (dtype == 'other' && !(allProject()&&(allYear()&&allPeople()))) return
               if (dtype == 'people' && !hasIntersection(selectedPeople, tags)) return
               if (dtype == 'project' && !hasIntersection(selectedProject, tags)) return
               if (!hasIntersection(selectedYear, years)) return

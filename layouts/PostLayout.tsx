@@ -11,6 +11,10 @@ import { allBlogs } from 'contentlayer/generated'
 import { notFound } from 'next/navigation'
 import PeopleProjectListLayout from '@/layouts/ProjectListLayout'
 import { useProjectTagStore, useYearTagStore, usePeopleTagStore } from 'app/store'
+import Link from 'next/link'
+import TagList from '@/components/TagList'
+
+
 
 const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`
 const discussUrl = (path) =>
@@ -235,12 +239,9 @@ function ProjectLayout({ content, authorDetails, next, prev, children }: LayoutP
             <div className="p-4">
               Category
               <br />
-              {tags.map((src, idx) => (
-                <span key={idx}>
-                  {idx == 0 ? '' : '/ '} {src}{' '}
-                </span>
-              ))}
+              <TagList tags={tags}/>
             </div>
+            <div className='h-32'></div>
             {/* <div>
               {credit}
             </div> */}
