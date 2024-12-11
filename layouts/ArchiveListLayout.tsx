@@ -277,7 +277,7 @@ export default function ArchiveListLayout({
             {displayPosts.map((post) => {
               const { path, date, title, dtype, summary, tags, years, start, finish, cities } = post
 
-              if (dtype == 'other' && !(allProject()&&(allYear()&&allPeople()))) return
+              if (dtype == 'other' && !(allProject() && allYear() && allPeople())) return
               if (dtype == 'people' && !hasIntersection(selectedPeople, tags)) return
               if (dtype == 'project' && !hasIntersection(selectedProject, tags)) return
               if (!hasIntersection(selectedYear, years)) return

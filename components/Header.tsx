@@ -8,7 +8,7 @@ import ThemeSwitch from './ThemeSwitch'
 import SearchButton from './SearchButton'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { useYearTagStore,useProjectTagStore,usePeopleTagStore } from 'app/store'
+import { useYearTagStore, useProjectTagStore, usePeopleTagStore } from 'app/store'
 
 const Header = () => {
   const pathName = usePathname()
@@ -45,10 +45,10 @@ const Header = () => {
               key={link.title}
               href={link.href}
               className="block text-gray-900 hover:text-black hover:underline"
-              onClick={()=>{
-                useYearTagStore.getState().resetTags();
-                useProjectTagStore.getState().resetTags();
-                usePeopleTagStore.getState().resetTags();
+              onClick={() => {
+                useYearTagStore.getState().resetTags()
+                useProjectTagStore.getState().resetTags()
+                usePeopleTagStore.getState().resetTags()
               }}
             >
               {link.title}

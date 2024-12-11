@@ -14,8 +14,6 @@ import { useProjectTagStore, useYearTagStore, usePeopleTagStore } from 'app/stor
 import Link from 'next/link'
 import TagList from '@/components/TagList'
 
-
-
 const editUrl = (path) => `${siteMetadata.siteRepo}/blob/main/data/${path}`
 const discussUrl = (path) =>
   `https://mobile.twitter.com/search?q=${encodeURIComponent(`${siteMetadata.siteUrl}/${path}`)}`
@@ -239,9 +237,9 @@ function ProjectLayout({ content, authorDetails, next, prev, children }: LayoutP
             <div className="p-4">
               Category
               <br />
-              <TagList tags={tags}/>
+              <TagList tags={tags} />
             </div>
-            <div className='h-32'></div>
+            <div className="h-32"></div>
             {/* <div>
               {credit}
             </div> */}
