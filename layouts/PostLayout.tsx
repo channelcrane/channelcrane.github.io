@@ -238,7 +238,7 @@ function ProjectLayout({ content, authorDetails, next, prev, children }: LayoutP
                   <div key={idx}>
                     {link !== '' ? (
                       <a
-                        href={`http://${link}`}
+                        href={`${link}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="hover:underline"
