@@ -112,7 +112,7 @@ export default function ProjectListLayout({
                   <div className="relative h-52 px-12 py-4 lg:h-52 lg:w-1/2">
                     <Link href={`/${path}`}>
                       <Image
-                        src={imagePaths[0] || '/static/images/sparrowhawk-avatar.jpg'}
+                        src={imagePaths[0] || 'static/images/sparrowhawk-avatar.jpg'}
                         alt="Example Image"
                         layout="fill" // 부모를 채우는 레이아웃
                         objectFit="cover" // 이미지를 채우는 방식 (cover, contain 등)

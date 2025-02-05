@@ -167,11 +167,12 @@ function ProjectLayout({ content, authorDetails, next, prev, children }: LayoutP
             ))}
           </div>
           <div className="no-scrollbar prose max-w-none overflow-scroll break-keep p-4 pt-0  font-bold text-black lg:h-body lg:w-1/4">
+            <div className="pb-4 pt-0 font-bold">{title}</div>
+
             {children}
           </div>
 
           <div className="no-scrollbar overflow-scroll pt-8 font-bold lg:h-body lg:w-1/4 lg:pt-0">
-            <div className="p-4 pt-0">{title}</div>
             <div className="p-4">
               City
               <br />

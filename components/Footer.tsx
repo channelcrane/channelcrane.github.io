@@ -13,14 +13,14 @@ export default function Footer() {
   return (
     <footer
       className={`fixed bottom-0 left-0 z-80 w-screen bg-white py-4 pt-0 text-center font-bold tracking-tight text-black transition-all duration-700 ease-in-out 
-        ${isExpanded ? 'max-h-[500px] overflow-scroll shadow-up' : 'max-h-[80px]'}`}
+        ${isExpanded ? 'max-h-[500px] overflow-scroll shadow-up' : 'max-h-[64px]'}`}
       onMouseEnter={() => setIsExpanded(true)}
       onMouseLeave={() => setIsExpanded(false)}
     >
-      <div className="h-[80px] pt-0 text-center">
+      <div className="h-[64px] pt-0 text-center">
         <Image
           className="inline-block cursor-pointer"
-          src={'/static/images/identity/logo_symbol.svg'}
+          src={'static/images/identity/logo_symbol.svg'}
           width={63.2}
           height={44.18}
           alt="Symbol of Crane"
