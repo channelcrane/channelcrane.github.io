@@ -27,7 +27,7 @@ const Header = () => {
     }
   }, [lastScrollY])
 
-  let headerClass = `w-full fixed top-0 left-0 transition-all z-70 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`
+  let headerClass = `w-full fixed top-0 left-0 transition-all z-70 ${isVisible ? 'translate-y-0' : '-translate-y-full'} lg:translate-y-0`
   if (siteMetadata.stickyNav) {
     headerClass += ' sticky top-0'
   }
