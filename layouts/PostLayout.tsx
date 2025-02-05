@@ -141,6 +141,16 @@ function ProjectLayout({ content, authorDetails, next, prev, children }: LayoutP
   } = content
   const basePath = path.split('/')[0]
 
+  const isYouTubeUrl = (url: string) => {
+    return url.includes('youtube.com') || url.includes('youtu.be')
+  }
+
+  const getYouTubeEmbedUrl = (url: string) => {
+    const regex = /(?:youtube\.com\/watch\?v=|youtu\.be\/)([a-zA-Z0-9_-]+)/
+    const match = url.match(regex)
+    return match ? `https://www.youtube.com/embed/${match[1]}` : ''
+  }
+
   return (
     <SectionContainer>
       <ScrollTopAndComment />
@@ -150,25 +160,37 @@ function ProjectLayout({ content, authorDetails, next, prev, children }: LayoutP
           <div className="no-scrollbar overflow-scroll lg:h-body lg:w-1/2">
             {imagePaths.map((src, index) => (
               <div key={index} className="relative h-auto w-full">
-                <Image
-                  src={src}
-                  alt={`Image ${index + 1}`}
-                  width={1024}
-                  height={1024}
-                  style={{
-                    objectFit: 'contain',
-                    width: '100%',
-                    height: 'auto',
-                    padding: '0rem 1rem',
-                    paddingBottom: '1rem',
-                  }}
-                />
+                {isYouTubeUrl(src) ? (
+                  <iframe
+                    width="100%"
+                    // height="400"
+                    src={getYouTubeEmbedUrl(src)}
+                    title={`YouTube Video ${index + 1}`}
+                    // frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    // allowFullScreen
+                    style={{ padding: '0rem 1rem', paddingBottom: '1rem' }}
+                  ></iframe>
+                ) : (
+                  <Image
+                    src={src}
+                    alt={`Image ${index + 1}`}
+                    width={1024}
+                    height={1024}
+                    style={{
+                      objectFit: 'contain',
+                      width: '100%',
+                      height: 'auto',
+                      padding: '0rem 1rem',
+                      paddingBottom: '1rem',
+                    }}
+                  />
+                )}
               </div>
             ))}
           </div>
-          <div className="no-scrollbar prose max-w-none overflow-scroll break-keep p-4 pt-0  font-bold text-black lg:h-body lg:w-1/4">
+          <div className="no-scrollbar prose max-w-none overflow-scroll break-keep p-4 pt-0 font-bold text-black lg:h-body lg:w-1/4">
             <div className="pb-4 pt-0 font-bold">{title}</div>
-
             {children}
           </div>
 
@@ -199,7 +221,7 @@ function ProjectLayout({ content, authorDetails, next, prev, children }: LayoutP
                   <span key={idx}>
                     {link !== '' ? (
                       <a href={`${link}`} rel="noopener noreferrer" className="hover:underline">
-                        {idx == 0 ? '' : '/ '} {name}{' '}
+                        {idx == 0 ? '' : '/ '} {name}
                       </a>
                     ) : (
                       <span>
@@ -223,8 +245,7 @@ function ProjectLayout({ content, authorDetails, next, prev, children }: LayoutP
                         rel="noopener noreferrer"
                         className="hover:underline"
                       >
-                        {' '}
-                        {name}{' '}
+                        {name}
                       </a>
                     ) : (
                       <span>
@@ -241,9 +262,6 @@ function ProjectLayout({ content, authorDetails, next, prev, children }: LayoutP
               <TagList tags={tags} />
             </div>
             <div className="h-32"></div>
-            {/* <div>
-              {credit}
-            </div> */}
           </div>
         </div>
       </article>
