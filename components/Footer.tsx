@@ -20,7 +20,7 @@ export default function Footer() {
       <div className="h-[64px] pt-0 text-center">
         <Image
           className="inline-block cursor-pointer"
-          src={'static/images/identity/logo_symbol.svg'}
+          src={'/staticc/images/identity/logo_symbol.svg'}
           width={63.2}
           height={44.18}
           alt="Symbol of Crane"
