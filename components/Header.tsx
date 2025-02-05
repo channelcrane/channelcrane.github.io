@@ -35,7 +35,7 @@ const Header = () => {
   let menuClass = ''
   if (pathName == '/') {
     menuClass =
-      'flex justify-between items-center py-4 px-16 font-bold w-full pb-0 lg:fixed lg:top-[47%] lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 lg:fit-content'
+      'flex justify-between items-center py-4 px-16 font-bold w-full pb-0 lg:fixed lg:top-[25vw] lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:fit-content'
   } else {
     menuClass = 'flex justify-between items-center py-4 px-16 font-bold'
   }

@@ -107,9 +107,9 @@ export default function ProjectListLayout({
               return (
                 <li
                   key={path}
-                  className="flex w-full flex-col pb-20 lg:h-60 lg:flex-row lg:space-y-0"
+                  className="mb-24 flex w-full flex-col lg:mb-8 lg:flex-row lg:space-y-0"
                 >
-                  <div className="relative h-52 px-12 py-4 lg:h-52 lg:w-1/2">
+                  <div className="relative mb-4 h-80 px-12 py-8 lg:h-[30vw] lg:w-1/2">
                     <Link href={`/${path}`}>
                       <Image
                         src={imagePaths[0] || '/static/images/sparrowhawk-avatar.jpg'}
@@ -121,7 +121,10 @@ export default function ProjectListLayout({
                   </div>
                   <div className="lg:w-1/4 lg:px-12">
                     <div className="font-bold tracking-tight">
-                      <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
+                      <Link
+                        href={`/${path}`}
+                        className="text-gray-900 hover:underline dark:text-gray-100"
+                      >
                         {title}
                       </Link>
                     </div>

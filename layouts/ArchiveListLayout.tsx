@@ -200,8 +200,8 @@ export default function ArchiveListLayout({
   return (
     <>
       <div className="pb-32">
-        <div className="h-40 w-full pb-6 pt-6"></div>
-        <div className="flex gap-4 px-10 pb-10 font-bold tracking-tight">
+        <div className="h-48 w-full pb-6 pt-6"></div>
+        <div className="flex gap-8 px-10 pb-10 font-bold tracking-tight">
           {/* tag Dropdown */}
           <div
             className="relative p-4 pl-0 hover:underline"
@@ -273,7 +273,7 @@ export default function ArchiveListLayout({
           </div>
         </div>
         <div className="flex px-10 sm:space-x-24">
-          <div className="justify-content-between grid w-full grid-cols-1 gap-x-28 gap-y-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          <div className="justify-content-between grid w-full grid-cols-1 gap-x-28 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-y-4">
             {displayPosts.map((post) => {
               const { path, date, title, dtype, summary, tags, years, start, finish, cities } = post
 
@@ -285,7 +285,10 @@ export default function ArchiveListLayout({
               return (
                 <div key={path} className=" aspect-[1/1] border-0.5 border-black px-3 py-2">
                   <div className="font-bold tracking-tight">
-                    <Link href={`/${path}`} className="text-gray-900 dark:text-gray-100">
+                    <Link
+                      href={`/${path}`}
+                      className="text-gray-900 hover:underline dark:text-gray-100"
+                    >
                       {title}
                     </Link>
                   </div>
