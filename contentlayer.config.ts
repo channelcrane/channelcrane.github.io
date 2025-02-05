@@ -173,7 +173,8 @@ export const Blog = defineDocumentType(() => ({
     links: { type: 'list', of: { type: 'string' }, default: [] },
     imagePaths: { type: 'list', of: { type: 'string' }, default: [] },
     credit: { type: 'json', default:{}},
-    projectLinks: { type: 'json', default:{}}
+    projectLinks: { type: 'json', default:{}},
+    projectTags: { type: 'list', of: { type: 'string' }, default: [] },
   },
   computedFields: {
     ...computedFields,

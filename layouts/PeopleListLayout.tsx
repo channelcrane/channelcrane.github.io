@@ -74,13 +74,15 @@ export default function PeopleListLayout({
   const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
 
   const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
-
+  const sortedDisplayPosts = [...displayPosts].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  )
   return (
     <>
       <div className="pb-32">
         <div className="h-52 w-full pb-6 pt-6 "></div>
         <div className="grid grid-cols-1 gap-1 px-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {displayPosts.map((post) => {
+          {sortedDisplayPosts.map((post) => {
             const { path, date, title, summary, tags } = post
             return (
               <div key={path} className="py-0">

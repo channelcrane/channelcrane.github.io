@@ -106,9 +106,9 @@ export default function PeopleProjectListLayout({
               return (
                 <li
                   key={path}
-                  className="mb-24 flex w-full flex-col lg:mb-8 lg:flex-row lg:space-y-0"
+                  className="mb-24 flex w-full flex-col xl:mb-8 xl:flex-row xl:space-y-0"
                 >
-                  <div className="relative mb-4 h-80 px-12 py-8 lg:h-[30vw] lg:w-1/2">
+                  <div className="relative mb-4 aspect-[4/3] px-12 py-8 xl:w-1/2">
                     <Link href={`/${path}`}>
                       <Image
                         src={imagePaths[0] || '/static/images/sparrowhawk-avatar.jpg'}
@@ -118,7 +118,7 @@ export default function PeopleProjectListLayout({
                       />
                     </Link>
                   </div>
-                  <div className="lg:w-1/4 lg:px-12">
+                  <div className="xl:w-1/4 xl:px-12">
                     <div className="font-bold tracking-tight">
                       <Link
                         href={`/${path}`}
@@ -128,14 +128,14 @@ export default function PeopleProjectListLayout({
                       </Link>
                     </div>
                     <div className="font-bold">{formatDateRange(date, date)}</div>
-                    <div className="flex flex-wrap lg:pt-4">
+                    <div className="flex flex-wrap xl:pt-4">
                       {tags?.map((tag) => <Tag key={tag} text={tag} />)}
                     </div>
                     <div className="flex flex-wrap">
                       {cities?.map((city) => <Tag key={city} text={city} />)}
                     </div>
                   </div>
-                  <div className="max-w-none pt-4 font-bold tracking-tight lg:w-1/4 lg:px-12 lg:pt-0">
+                  <div className="max-w-none pt-4 font-bold tracking-tight xl:w-1/4 xl:px-12 xl:pt-0">
                     {summary}
                   </div>
                 </li>

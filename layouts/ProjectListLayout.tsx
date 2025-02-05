@@ -91,14 +91,17 @@ export default function ProjectListLayout({
   const sortedTags = tagKeys.sort((a, b) => tagCounts[b] - tagCounts[a])
 
   const displayPosts = initialDisplayPosts.length > 0 ? initialDisplayPosts : posts
+  const sortedDisplayPosts = [...displayPosts].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+  )
 
   return (
     <>
       <div className="pb-32">
         <div className="h-52 w-full pb-6 pt-6 "></div>
-        <div className="flex px-5 sm:space-x-24 lg:px-12">
+        <div className="flex px-5 sm:space-x-24 xl:px-12">
           <ul className="w-full">
-            {displayPosts.map((post) => {
+            {sortedDisplayPosts.map((post) => {
               const { path, date, title, dtype, summary, tags, cities, start, finish, imagePaths } =
                 post
 
@@ -107,9 +110,9 @@ export default function ProjectListLayout({
               return (
                 <li
                   key={path}
-                  className="mb-24 flex w-full flex-col lg:mb-8 lg:flex-row lg:space-y-0"
+                  className="mb-24 flex w-full flex-col xl:mb-8 xl:flex-row xl:space-y-0"
                 >
-                  <div className="relative mb-4 h-80 px-12 py-8 lg:h-[30vw] lg:w-1/2">
+                  <div className="relative mb-4 aspect-[4/3] px-12 py-8 xl:w-1/2">
                     <Link href={`/${path}`}>
                       <Image
                         src={imagePaths[0] || '/static/images/sparrowhawk-avatar.jpg'}
@@ -119,7 +122,7 @@ export default function ProjectListLayout({
                       />
                     </Link>
                   </div>
-                  <div className="lg:w-1/4 lg:px-12">
+                  <div className="xl:w-1/4 xl:px-12">
                     <div className="font-bold tracking-tight">
                       <Link
                         href={`/${path}`}
@@ -129,14 +132,14 @@ export default function ProjectListLayout({
                       </Link>
                     </div>
                     <div className="font-bold">{formatDateRange(date, date)}</div>
-                    <div className="invisible flex h-0 flex-wrap lg:visible lg:h-auto lg:pt-4">
+                    <div className="invisible flex h-0 flex-wrap xl:visible xl:h-auto xl:pt-4">
                       {tags?.map((tag) => <Tag key={tag} text={tag} />)}
                     </div>
-                    <div className="invisible flex h-0 flex-wrap lg:visible lg:h-auto">
+                    <div className="invisible flex h-0 flex-wrap xl:visible xl:h-auto">
                       {cities?.map((city) => <NonlinkTag key={city} text={city} />)}
                     </div>
                   </div>
-                  <div className="max-w-none pt-4 font-bold tracking-tight lg:w-1/4 lg:px-12 lg:pt-0">
+                  <div className="max-w-none pt-4 font-bold tracking-tight xl:w-1/4 xl:px-12 xl:pt-0">
                     {summary}
                   </div>
                 </li>

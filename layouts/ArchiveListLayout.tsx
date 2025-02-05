@@ -250,7 +250,7 @@ export default function ArchiveListLayout({
           </div>
 
           {/* PEOPLE TAG Dropdown */}
-          <div
+          {/* <div
             className="relative p-4 pl-0 hover:underline"
             onMouseEnter={() => setOpenPeopleTag(true)}
             onMouseLeave={() => setOpenPeopleTag(false)}
@@ -270,15 +270,27 @@ export default function ArchiveListLayout({
                 </div>
               </div>
             )}
-          </div>
+          </div> */}
         </div>
         <div className="flex px-10 sm:space-x-24">
           <div className="justify-content-between grid w-full grid-cols-1 gap-x-28 gap-y-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 lg:gap-y-4">
             {displayPosts.map((post) => {
-              const { path, date, title, dtype, summary, tags, years, start, finish, cities } = post
+              const {
+                path,
+                date,
+                title,
+                dtype,
+                projectTags,
+                summary,
+                tags,
+                years,
+                start,
+                finish,
+                cities,
+              } = post
 
               if (dtype == 'other' && !(allProject() && allYear() && allPeople())) return
-              if (dtype == 'people' && !hasIntersection(selectedPeople, tags)) return
+              if (dtype == 'people' && !hasIntersection(selectedProject, projectTags)) return
               if (dtype == 'project' && !hasIntersection(selectedProject, tags)) return
               if (!hasIntersection(selectedYear, years)) return
 
