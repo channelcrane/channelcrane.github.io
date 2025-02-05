@@ -159,17 +159,15 @@ function ProjectLayout({ content, authorDetails, next, prev, children }: LayoutP
         <div className="flex flex-col lg:flex-row">
           <div className="no-scrollbar overflow-scroll lg:h-body lg:w-1/2">
             {imagePaths.map((src, index) => (
-              <div key={index} className="relative h-auto w-full">
+              <div key={index} className="relative aspect-video w-full">
                 {isYouTubeUrl(src) ? (
                   <iframe
-                    width="100%"
-                    // height="400"
                     src={getYouTubeEmbedUrl(src)}
                     title={`YouTube Video ${index + 1}`}
-                    // frameBorder="0"
+                    frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    // allowFullScreen
-                    style={{ padding: '0rem 1rem', paddingBottom: '1rem' }}
+                    sandbox="allow-scripts allow-same-origin"
+                    className="absolute left-0 top-0 h-full w-full"
                   ></iframe>
                 ) : (
                   <Image
