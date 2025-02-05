@@ -45,7 +45,7 @@ const Header = () => {
       <div className="flex justify-center p-4">
         <Link href={'/'}>
           <Image
-            src="/staticc/images/identity/logo_ver_2.svg"
+            src="/static/images/identity/logo_ver_2.svg"
             width={119.62}
             height={73.71}
             alt="Crane logo"
