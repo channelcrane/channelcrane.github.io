@@ -1,30 +1,47 @@
 'use client'
+import { useState, useEffect } from 'react'
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
-import Logo from '@/data/logo.svg'
 import Link from './Link'
-import MobileNav from './MobileNav'
-import ThemeSwitch from './ThemeSwitch'
-import SearchButton from './SearchButton'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useYearTagStore, useProjectTagStore, usePeopleTagStore } from 'app/store'
 
 const Header = () => {
   const pathName = usePathname()
-  let headerClass = 'w-full fixed top-0 left-0 transition-all z-70'
+  const [isVisible, setIsVisible] = useState(true)
+  const [lastScrollY, setLastScrollY] = useState(0)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (typeof window !== 'undefined') {
+        const currentScrollY = window.scrollY
+        setIsVisible(currentScrollY < lastScrollY || currentScrollY < 10)
+        setLastScrollY(currentScrollY)
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [lastScrollY])
+
+  let headerClass = `w-full fixed top-0 left-0 transition-all z-70 ${isVisible ? 'translate-y-0' : '-translate-y-full'}`
   if (siteMetadata.stickyNav) {
     headerClass += ' sticky top-0'
   }
 
   let menuClass = ''
-  if (pathName == '/')
+  if (pathName == '/') {
     menuClass =
-      'flex justify-between items-center py-4 px-16 font-bold  w-full pb-0 lg:fixed lg:top-[47%] lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 lg:fit-content'
-  else menuClass = 'flex justify-between items-center py-4 px-16 font-bold'
+      'flex justify-between items-center py-4 px-16 font-bold w-full pb-0 lg:fixed lg:top-[47%] lg:left-1/2 lg:transform lg:-translate-x-1/2 lg:-translate-y-1/2 lg:fit-content'
+  } else {
+    menuClass = 'flex justify-between items-center py-4 px-16 font-bold'
+  }
 
   return (
-    <header className={headerClass}>
+    <header className={`${headerClass} flex flex-col transition-transform duration-300`}>
       <div className="flex justify-center p-4">
         <Link href={'/'}>
           <Image
@@ -32,12 +49,11 @@ const Header = () => {
             width={119.62}
             height={73.71}
             alt="Crane logo"
-          ></Image>
+          />
         </Link>
       </div>
 
       <div className={menuClass}>
-        {/* <div className="no-scrollbar hidden max-w-40 items-center space-x-4 overflow-x-auto sm:flex sm:space-x-6 md:max-w-72 lg:max-w-96"> */}
         {headerNavLinks
           .filter((link) => link.href !== '/')
           .map((link) => (
@@ -54,8 +70,6 @@ const Header = () => {
               {link.title}
             </Link>
           ))}
-        {/* </div> */}
-        {/* <MobileNav /> */}
       </div>
     </header>
   )
