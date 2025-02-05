@@ -167,7 +167,7 @@ function ProjectLayout({ content, authorDetails, next, prev, children }: LayoutP
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     sandbox="allow-scripts allow-same-origin"
-                    className="absolute left-0 top-0 h-full w-full"
+                    className="absolute left-0 top-0 h-full w-full p-4"
                   ></iframe>
                 ) : (
                   <Image
